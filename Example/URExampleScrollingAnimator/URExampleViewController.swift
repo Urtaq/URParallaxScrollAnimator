@@ -55,14 +55,20 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     func initView() {
         self.btnInitRatio.layer.cornerRadius = 5.0
 
+        self.initValues()
+
         self.lbParallexScrollRatioMin.text = "\(self.slParallexScrollRatio.minimumValue)"
         self.lbParallexScrollRatioMax.text = "\(self.slParallexScrollRatio.maximumValue)"
         self.lbParallexScrollRatioCurrent.text = "\(self.slParallexScrollRatio.value)"
     }
 
-    @IBAction func tapInitRatio(_ sender: Any) {
+    func initValues() {
         self.parallexScrolRatio = DefaultParallexScrollRatio
         self.slParallexScrollRatio.value = Float(DefaultParallexScrollRatio)
+    }
+
+    @IBAction func tapInitRatio(_ sender: Any) {
+        self.initValues()
     }
 
     @IBAction func changeParallexScrollRatio(_ sender: Any) {
