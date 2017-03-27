@@ -8,7 +8,7 @@
 
 import UIKit
 
-let DefaultParallexScrollRatio: CGFloat = 0.5
+let DefaultParallexScrollRatio: CGFloat = 2.0
 
 class URExampleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -32,6 +32,9 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
 
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
     var girlTexts: [String] = ["Suzy in korean transitional dress", "Suzy during an interview", "Smiling Suzy", "Brightly Smiling Suzy", "SeolHyun wearing a swimming suit", "SeolHyun standing nicely", "SeolHyun carrying a cute bag", "SeolHyun laying down"]
+
+    var boyImages: [UIImage] = [#imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2")]
+    var boyTexts: [String] = ["KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,13 +72,13 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.images.count
+        return self.boyImages.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! URExampleTableViewCell
 
-        cell.configView(image: self.images[indexPath.row], text: self.texts[indexPath.row])
+        cell.configView(image: self.boyImages[indexPath.row], text: self.boyTexts[indexPath.row])
 
         return cell
     }
