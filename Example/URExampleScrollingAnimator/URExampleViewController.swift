@@ -8,7 +8,7 @@
 
 import UIKit
 
-let DefaultParallexScrollRatio: CGFloat = 2.0
+let DefaultParallaxScrollRatio: CGFloat = 2.0
 
 class URExampleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -16,6 +16,8 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var refreshImageView: UIImageView!
+    @IBOutlet var scrollView1: UIScrollView!
+    @IBOutlet var refreshImageView1: UIImageView!
 
     @IBOutlet var slParallexScrollRatio: UISlider!
     @IBOutlet var lbParallexScrollRatioMin: UILabel!
@@ -24,11 +26,15 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet var btnInitRatio: UIButton!
 
-    var parallexScrolRatio: CGFloat = DefaultParallexScrollRatio {
+    var parallaxScrollRatio: CGFloat = DefaultParallaxScrollRatio {
         didSet {
-            self.lbParallexScrollRatioCurrent.text = "\(self.parallexScrolRatio)"
+            self.lbParallexScrollRatioCurrent.text = "\(self.parallaxScrollRatio)"
+
+            self.parallaxScrollRatio1 = self.parallaxScrollRatio * 0.8
         }
     }
+
+    var parallaxScrollRatio1: CGFloat = DefaultParallaxScrollRatio * 0.8
 
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
     var girlTexts: [String] = ["Suzy in korean transitional dress", "Suzy during an interview", "Smiling Suzy", "Brightly Smiling Suzy", "SeolHyun wearing a swimming suit", "SeolHyun standing nicely", "SeolHyun carrying a cute bag", "SeolHyun laying down"]
@@ -53,6 +59,8 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func initView() {
+        self.view.backgroundColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
+
         self.btnInitRatio.layer.cornerRadius = 5.0
 
         self.initValues()
@@ -63,8 +71,8 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func initValues() {
-        self.parallexScrolRatio = DefaultParallexScrollRatio
-        self.slParallexScrollRatio.value = Float(DefaultParallexScrollRatio)
+        self.parallaxScrollRatio = DefaultParallaxScrollRatio
+        self.slParallexScrollRatio.value = Float(DefaultParallaxScrollRatio)
     }
 
     @IBAction func tapInitRatio(_ sender: Any) {
@@ -73,7 +81,7 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBAction func changeParallexScrollRatio(_ sender: Any) {
         let value = roundUp(Double(self.slParallexScrollRatio.value), roundUpPosition: 2)
-        self.parallexScrolRatio = CGFloat(value)
+        self.parallaxScrollRatio = CGFloat(value)
         self.slParallexScrollRatio.setValue(Float(value), animated: false)
     }
 
@@ -98,7 +106,7 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print("\(scrollView)")
 
-        let scrollRatio: CGFloat = self.scrollView.contentSize.height / scrollView.contentSize.height * self.parallexScrolRatio
+        let scrollRatio: CGFloat = self.scrollView.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.refreshImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
         if limitImageScrollOffsetY > abs(scrollView.contentOffset.y) {
             self.scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)

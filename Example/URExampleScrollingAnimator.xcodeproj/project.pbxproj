@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		852E7F9D67401AC3693ADB7C /* Pods_URExampleScrollingAnimator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFFA942052901470CFD9F8B /* Pods_URExampleScrollingAnimator.framework */; };
+		973B79531E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */; };
 		9743C5B61E88A50E00F570ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B51E88A50E00F570ED /* AppDelegate.swift */; };
 		9743C5B81E88A50E00F570ED /* URExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B71E88A50E00F570ED /* URExampleViewController.swift */; };
 		9743C5BB1E88A50E00F570ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9743C5B91E88A50E00F570ED /* Main.storyboard */; };
@@ -16,9 +17,22 @@
 		9743C5C81E88A61300F570ED /* URExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		973B79551E89F9FD0097A9F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9743C5AA1E88A50E00F570ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9743C5B11E88A50E00F570ED;
+			remoteInfo = URExampleScrollingAnimator;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		606E1DBE38ED2391C7A8D4A9 /* Pods-URExampleScrollingAnimator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URExampleScrollingAnimator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URExampleScrollingAnimator/Pods-URExampleScrollingAnimator.debug.xcconfig"; sourceTree = "<group>"; };
 		8D6DCD125E5D37143756DA83 /* Pods-URExampleScrollingAnimator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URExampleScrollingAnimator.release.xcconfig"; path = "Pods/Target Support Files/Pods-URExampleScrollingAnimator/Pods-URExampleScrollingAnimator.release.xcconfig"; sourceTree = "<group>"; };
+		973B79501E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = URExampleScrollingAnimatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URExampleScrollingAnimatorUITests.swift; sourceTree = "<group>"; };
+		973B79541E89F9FD0097A9F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9743C5B21E88A50E00F570ED /* URExampleScrollingAnimator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URExampleScrollingAnimator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9743C5B51E88A50E00F570ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9743C5B71E88A50E00F570ED /* URExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URExampleViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +45,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		973B794D1E89F9FD0097A9F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9743C5AF1E88A50E00F570ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,10 +80,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		973B79511E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */,
+				973B79541E89F9FD0097A9F1 /* Info.plist */,
+			);
+			path = URExampleScrollingAnimatorUITests;
+			sourceTree = "<group>";
+		};
 		9743C5A91E88A50E00F570ED = {
 			isa = PBXGroup;
 			children = (
 				9743C5B41E88A50E00F570ED /* URExampleScrollingAnimator */,
+				973B79511E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests */,
 				9743C5B31E88A50E00F570ED /* Products */,
 				776F59199BC4FCED95761D18 /* Pods */,
 				7CB905E429838A602135649C /* Frameworks */,
@@ -73,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				9743C5B21E88A50E00F570ED /* URExampleScrollingAnimator.app */,
+				973B79501E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +126,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		973B794F1E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 973B79591E89F9FD0097A9F1 /* Build configuration list for PBXNativeTarget "URExampleScrollingAnimatorUITests" */;
+			buildPhases = (
+				973B794C1E89F9FD0097A9F1 /* Sources */,
+				973B794D1E89F9FD0097A9F1 /* Frameworks */,
+				973B794E1E89F9FD0097A9F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				973B79561E89F9FD0097A9F1 /* PBXTargetDependency */,
+			);
+			name = URExampleScrollingAnimatorUITests;
+			productName = URExampleScrollingAnimatorUITests;
+			productReference = 973B79501E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9743C5B11E88A50E00F570ED /* URExampleScrollingAnimator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9743C5C41E88A50E00F570ED /* Build configuration list for PBXNativeTarget "URExampleScrollingAnimator" */;
@@ -120,10 +170,16 @@
 		9743C5AA1E88A50E00F570ED /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = zigbang;
 				TargetAttributes = {
+					973B794F1E89F9FD0097A9F1 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 7AX2JZT3L8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9743C5B11E88A50E00F570ED;
+					};
 					9743C5B11E88A50E00F570ED = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 7AX2JZT3L8;
@@ -145,11 +201,19 @@
 			projectRoot = "";
 			targets = (
 				9743C5B11E88A50E00F570ED /* URExampleScrollingAnimator */,
+				973B794F1E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		973B794E1E89F9FD0097A9F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9743C5B01E88A50E00F570ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +275,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		973B794C1E89F9FD0097A9F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				973B79531E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9743C5AE1E88A50E00F570ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,6 +294,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		973B79561E89F9FD0097A9F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9743C5B11E88A50E00F570ED /* URExampleScrollingAnimator */;
+			targetProxy = 973B79551E89F9FD0097A9F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9743C5B91E88A50E00F570ED /* Main.storyboard */ = {
@@ -243,6 +323,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		973B79571E89F9FD0097A9F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 7AX2JZT3L8;
+				INFOPLIST_FILE = URExampleScrollingAnimatorUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zigbang.URExampleScrollingAnimatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = URExampleScrollingAnimator;
+			};
+			name = Debug;
+		};
+		973B79581E89F9FD0097A9F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 7AX2JZT3L8;
+				INFOPLIST_FILE = URExampleScrollingAnimatorUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zigbang.URExampleScrollingAnimatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = URExampleScrollingAnimator;
+			};
+			name = Release;
+		};
 		9743C5C21E88A50E00F570ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -365,6 +475,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		973B79591E89F9FD0097A9F1 /* Build configuration list for PBXNativeTarget "URExampleScrollingAnimatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				973B79571E89F9FD0097A9F1 /* Debug */,
+				973B79581E89F9FD0097A9F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9743C5AD1E88A50E00F570ED /* Build configuration list for PBXProject "URExampleScrollingAnimator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -381,6 +499,7 @@
 				9743C5C61E88A50E00F570ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

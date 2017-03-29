@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9t1-uu-yaN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9t1-uu-yaN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -24,10 +24,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJl-Hq-cpQ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="93.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배경도시_01re" translatesAutoresizingMaskIntoConstraints="NO" id="taJ-hX-Abp">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="taJ-hX-Abp" secondAttribute="height" multiplier="750:187" id="zRA-r1-8bG"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="taJ-hX-Abp" firstAttribute="top" secondItem="jJl-Hq-cpQ" secondAttribute="top" id="Ass-iF-mhw"/>
+                                    <constraint firstAttribute="bottom" secondItem="taJ-hX-Abp" secondAttribute="bottom" id="Iao-lf-ctu"/>
+                                    <constraint firstAttribute="trailing" secondItem="taJ-hX-Abp" secondAttribute="trailing" id="M68-G5-YOD"/>
+                                    <constraint firstItem="taJ-hX-Abp" firstAttribute="width" secondItem="jJl-Hq-cpQ" secondAttribute="width" id="Nmr-Gd-5F4"/>
+                                    <constraint firstItem="taJ-hX-Abp" firstAttribute="leading" secondItem="jJl-Hq-cpQ" secondAttribute="leading" id="XNJ-jm-GQs"/>
+                                </constraints>
+                            </scrollView>
                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uoT-EP-ip6">
                                 <rect key="frame" x="0.0" y="64" width="375" height="93.5"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="refresh_Imags" translatesAutoresizingMaskIntoConstraints="NO" id="ada-KS-YaW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="누끼설현_01re" translatesAutoresizingMaskIntoConstraints="NO" id="ada-KS-YaW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ada-KS-YaW" secondAttribute="height" multiplier="750:187" id="K9e-zB-twO"/>
@@ -51,7 +69,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WLK-mm-PYY" id="38n-Ub-gvG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tak-ws-hUw">
@@ -134,6 +152,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LCc-ze-qOc" secondAttribute="bottom" constant="20" id="9xF-4J-uI8"/>
                             <constraint firstItem="pda-c8-0We" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="AcC-f2-GkH"/>
                             <constraint firstItem="8CY-R4-pDh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="DFw-Wy-gjR"/>
+                            <constraint firstItem="jJl-Hq-cpQ" firstAttribute="leading" secondItem="uoT-EP-ip6" secondAttribute="leading" id="EfM-28-0or"/>
                             <constraint firstItem="LCc-ze-qOc" firstAttribute="centerY" secondItem="pda-c8-0We" secondAttribute="centerY" id="GNf-4D-AcX"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tuP-3q-01A" secondAttribute="bottom" constant="20" id="Gbx-ha-hwy"/>
                             <constraint firstItem="GXy-7Y-R0D" firstAttribute="leading" secondItem="LCc-ze-qOc" secondAttribute="leading" constant="-10" id="H5a-TB-2fC"/>
@@ -142,7 +161,10 @@
                             <constraint firstItem="uoT-EP-ip6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="b8r-8c-y0e"/>
                             <constraint firstItem="GXy-7Y-R0D" firstAttribute="centerY" secondItem="M2G-Gh-OAK" secondAttribute="centerY" id="cH2-M5-v6g"/>
                             <constraint firstItem="uoT-EP-ip6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cPf-zp-hUi"/>
+                            <constraint firstItem="jJl-Hq-cpQ" firstAttribute="top" secondItem="uoT-EP-ip6" secondAttribute="top" id="dJF-TV-GfU"/>
                             <constraint firstItem="tuP-3q-01A" firstAttribute="centerY" secondItem="pda-c8-0We" secondAttribute="centerY" id="gle-bz-pV0"/>
+                            <constraint firstItem="jJl-Hq-cpQ" firstAttribute="bottom" secondItem="uoT-EP-ip6" secondAttribute="bottom" id="hRv-4Q-4WU"/>
+                            <constraint firstItem="jJl-Hq-cpQ" firstAttribute="trailing" secondItem="uoT-EP-ip6" secondAttribute="trailing" id="iPU-hb-f1o"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8CY-R4-pDh" secondAttribute="bottom" constant="64" id="j3c-oC-vkd"/>
                             <constraint firstItem="Mwh-Op-yQ4" firstAttribute="centerX" secondItem="LCc-ze-qOc" secondAttribute="centerX" id="lCY-Nh-XAl"/>
                             <constraint firstItem="M2G-Gh-OAK" firstAttribute="leading" secondItem="LCc-ze-qOc" secondAttribute="trailing" constant="-10" id="nXb-No-CXr"/>
@@ -165,7 +187,9 @@
                         <outlet property="lbParallexScrollRatioMax" destination="M2G-Gh-OAK" id="6Bb-wz-1Zp"/>
                         <outlet property="lbParallexScrollRatioMin" destination="GXy-7Y-R0D" id="Zef-l8-upo"/>
                         <outlet property="refreshImageView" destination="ada-KS-YaW" id="gfo-R0-j4o"/>
+                        <outlet property="refreshImageView1" destination="taJ-hX-Abp" id="qwJ-cJ-fe4"/>
                         <outlet property="scrollView" destination="uoT-EP-ip6" id="kvT-dG-B7A"/>
+                        <outlet property="scrollView1" destination="jJl-Hq-cpQ" id="bqV-bW-38H"/>
                         <outlet property="slParallexScrollRatio" destination="LCc-ze-qOc" id="Av5-eg-n8M"/>
                         <outlet property="tableView" destination="8CY-R4-pDh" id="duJ-ln-L4q"/>
                     </connections>
@@ -212,6 +236,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="refresh_Imags" width="750" height="187"/>
+        <image name="누끼설현_01re" width="750" height="187"/>
+        <image name="배경도시_01re" width="750" height="187"/>
     </resources>
 </document>
