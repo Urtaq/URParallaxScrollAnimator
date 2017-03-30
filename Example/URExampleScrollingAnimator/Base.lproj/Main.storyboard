@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJl-Hq-cpQ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="93.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="539"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배경도시_01re" translatesAutoresizingMaskIntoConstraints="NO" id="taJ-hX-Abp">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                             </scrollView>
                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uoT-EP-ip6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="93.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="539"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="누끼설현_01re" translatesAutoresizingMaskIntoConstraints="NO" id="ada-KS-YaW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
@@ -60,6 +60,11 @@
                                     <constraint firstAttribute="width" secondItem="uoT-EP-ip6" secondAttribute="height" multiplier="750:187" id="c7z-kw-49N"/>
                                     <constraint firstAttribute="bottom" secondItem="ada-KS-YaW" secondAttribute="bottom" id="d1N-c7-c5Q"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="c7z-kw-49N"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8CY-R4-pDh">
                                 <rect key="frame" x="0.0" y="64" width="375" height="539"/>
@@ -162,6 +167,7 @@
                             <constraint firstItem="GXy-7Y-R0D" firstAttribute="centerY" secondItem="M2G-Gh-OAK" secondAttribute="centerY" id="cH2-M5-v6g"/>
                             <constraint firstItem="uoT-EP-ip6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cPf-zp-hUi"/>
                             <constraint firstItem="jJl-Hq-cpQ" firstAttribute="top" secondItem="uoT-EP-ip6" secondAttribute="top" id="dJF-TV-GfU"/>
+                            <constraint firstItem="8CY-R4-pDh" firstAttribute="bottom" secondItem="uoT-EP-ip6" secondAttribute="bottom" id="g8Z-S6-PNe"/>
                             <constraint firstItem="tuP-3q-01A" firstAttribute="centerY" secondItem="pda-c8-0We" secondAttribute="centerY" id="gle-bz-pV0"/>
                             <constraint firstItem="jJl-Hq-cpQ" firstAttribute="bottom" secondItem="uoT-EP-ip6" secondAttribute="bottom" id="hRv-4Q-4WU"/>
                             <constraint firstItem="jJl-Hq-cpQ" firstAttribute="trailing" secondItem="uoT-EP-ip6" secondAttribute="trailing" id="iPU-hb-f1o"/>

@@ -8,12 +8,13 @@
 
 import UIKit
 
-let DefaultParallaxScrollRatio: CGFloat = 2.0
+let DefaultParallaxScrollRatio: CGFloat = 1.38
 
 class URExampleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
 
+//    @IBOutlet var parallaxBackgroundView: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var refreshImageView: UIImageView!
     @IBOutlet var scrollView1: UIScrollView!
@@ -30,11 +31,11 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         didSet {
             self.lbParallexScrollRatioCurrent.text = "\(self.parallaxScrollRatio)"
 
-            self.parallaxScrollRatio1 = self.parallaxScrollRatio * 0.8
+            self.parallaxScrollRatio1 = self.parallaxScrollRatio * 1.2
         }
     }
 
-    var parallaxScrollRatio1: CGFloat = DefaultParallaxScrollRatio * 0.8
+    var parallaxScrollRatio1: CGFloat = DefaultParallaxScrollRatio * 1.2
 
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
     var girlTexts: [String] = ["Suzy in korean transitional dress", "Suzy during an interview", "Smiling Suzy", "Brightly Smiling Suzy", "SeolHyun wearing a swimming suit", "SeolHyun standing nicely", "SeolHyun carrying a cute bag", "SeolHyun laying down"]
@@ -58,8 +59,14 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.initScrollContentOffset()
+    }
+
     func initView() {
-        self.view.backgroundColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
+        self.scrollView1.backgroundColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
 
         self.btnInitRatio.layer.cornerRadius = 5.0
 
@@ -73,6 +80,10 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     func initValues() {
         self.parallaxScrollRatio = DefaultParallaxScrollRatio
         self.slParallexScrollRatio.value = Float(DefaultParallaxScrollRatio)
+    }
+
+    func initScrollContentOffset() {
+        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: -self.refreshImageView.bounds.height + 24)
     }
 
     @IBAction func tapInitRatio(_ sender: Any) {
@@ -102,21 +113,33 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     var preOffsetY: CGFloat = 0.0
+    var preOffsetY1: CGFloat = 0.0
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print("\(scrollView)")
 
         let scrollRatio: CGFloat = self.scrollView.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.refreshImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
+
+        let scrollRatio1: CGFloat = self.scrollView1.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio1
+        if self.preOffsetY1 == 0.0 {
+            self.preOffsetY1 = self.scrollView1.contentOffset.y
+        }
         if limitImageScrollOffsetY > abs(scrollView.contentOffset.y) {
             self.scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)
+            self.scrollView1.contentOffset = CGPoint(x: 0, y: self.preOffsetY1 + (scrollView.contentOffset.y * scrollRatio1 * -1))
         } else {
             self.scrollView.contentOffset = CGPoint(x: 0, y: self.scrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
+            self.scrollView1.contentOffset = CGPoint(x: 0, y: self.scrollView1.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
         }
 
         self.preOffsetY = scrollView.contentOffset.y
 
         print("moved is \(scrollView.contentOffset.y * scrollRatio)")
+
+        if scrollView.contentOffset.y == 0 {
+            self.initScrollContentOffset()
+        }
     }
 }
 
