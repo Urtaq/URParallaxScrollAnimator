@@ -204,10 +204,10 @@
             </objects>
             <point key="canvasLocation" x="1000.8" y="38.23088455772114"/>
         </scene>
-        <!--View Controller-->
+        <!--Example Detail View Controller-->
         <scene sceneID="HN2-ha-wHj">
             <objects>
-                <viewController id="ncT-EB-MG8" sceneMemberID="viewController">
+                <viewController id="ncT-EB-MG8" customClass="URExampleDetailViewController" customModule="URExampleScrollingAnimator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gob-Sg-axO"/>
                         <viewControllerLayoutGuide type="bottom" id="XqL-xg-ra2"/>
@@ -215,7 +215,20 @@
                     <view key="view" contentMode="scaleToFill" id="X4W-eC-RKo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ju6-Kr-KmS">
+                                <rect key="frame" x="155.5" y="318.5" width="65" height="30"/>
+                                <state key="normal" title="Tap here!"/>
+                                <connections>
+                                    <action selector="tapped:" destination="ncT-EB-MG8" eventType="touchUpInside" id="AN5-XN-z6v"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ju6-Kr-KmS" firstAttribute="centerX" secondItem="X4W-eC-RKo" secondAttribute="centerX" id="8He-wX-pi9"/>
+                            <constraint firstItem="ju6-Kr-KmS" firstAttribute="centerY" secondItem="X4W-eC-RKo" secondAttribute="centerY" id="Sjn-Rn-cvH"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdK-3W-4GU" userLabel="First Responder" sceneMemberID="firstResponder"/>

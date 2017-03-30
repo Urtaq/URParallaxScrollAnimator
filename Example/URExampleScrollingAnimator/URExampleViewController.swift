@@ -62,7 +62,7 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.initScrollContentOffset()
+        self.initScroll()
     }
 
     func initView() {
@@ -82,8 +82,10 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         self.slParallexScrollRatio.value = Float(DefaultParallaxScrollRatio)
     }
 
-    func initScrollContentOffset() {
+    func initScroll() {
         self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: -self.refreshImageView.bounds.height + 24)
+
+        self.isHapticFeedbackEnabled = true
     }
 
     @IBAction func tapInitRatio(_ sender: Any) {
@@ -128,7 +130,11 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         if limitImageScrollOffsetY > abs(scrollView.contentOffset.y) {
             self.scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)
             self.scrollView1.contentOffset = CGPoint(x: 0, y: self.preOffsetY1 + (scrollView.contentOffset.y * scrollRatio1 * -1))
+
+            self.generateHapticFeedback()
         } else {
+            self.isHapticFeedbackEnabled = false
+
             self.scrollView.contentOffset = CGPoint(x: 0, y: self.scrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
             self.scrollView1.contentOffset = CGPoint(x: 0, y: self.scrollView1.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
         }
@@ -138,7 +144,24 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         print("moved is \(scrollView.contentOffset.y * scrollRatio)")
 
         if scrollView.contentOffset.y == 0 {
-            self.initScrollContentOffset()
+            self.initScroll()
+        }
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.isHapticFeedbackEnabled = true
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.isHapticFeedbackEnabled = false
+    }
+
+    var isHapticFeedbackEnabled: Bool = true
+
+    func generateHapticFeedback() {
+        if self.isHapticFeedbackEnabled {
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
         }
     }
 }

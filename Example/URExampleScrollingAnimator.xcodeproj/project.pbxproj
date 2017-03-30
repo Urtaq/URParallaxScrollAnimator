@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		852E7F9D67401AC3693ADB7C /* Pods_URExampleScrollingAnimator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFFA942052901470CFD9F8B /* Pods_URExampleScrollingAnimator.framework */; };
+		971D9FBB1E8CE54D002BB42E /* URExampleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D9FBA1E8CE54D002BB42E /* URExampleDetailViewController.swift */; };
 		973B79531E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */; };
 		9743C5B61E88A50E00F570ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B51E88A50E00F570ED /* AppDelegate.swift */; };
 		9743C5B81E88A50E00F570ED /* URExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B71E88A50E00F570ED /* URExampleViewController.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		606E1DBE38ED2391C7A8D4A9 /* Pods-URExampleScrollingAnimator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URExampleScrollingAnimator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URExampleScrollingAnimator/Pods-URExampleScrollingAnimator.debug.xcconfig"; sourceTree = "<group>"; };
 		8D6DCD125E5D37143756DA83 /* Pods-URExampleScrollingAnimator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URExampleScrollingAnimator.release.xcconfig"; path = "Pods/Target Support Files/Pods-URExampleScrollingAnimator/Pods-URExampleScrollingAnimator.release.xcconfig"; sourceTree = "<group>"; };
+		971D9FBA1E8CE54D002BB42E /* URExampleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URExampleDetailViewController.swift; sourceTree = "<group>"; };
 		973B79501E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = URExampleScrollingAnimatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URExampleScrollingAnimatorUITests.swift; sourceTree = "<group>"; };
 		973B79541E89F9FD0097A9F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				9743C5B51E88A50E00F570ED /* AppDelegate.swift */,
 				9743C5B71E88A50E00F570ED /* URExampleViewController.swift */,
 				9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */,
+				971D9FBA1E8CE54D002BB42E /* URExampleDetailViewController.swift */,
 				9743C5B91E88A50E00F570ED /* Main.storyboard */,
 				9743C5BC1E88A50E00F570ED /* Assets.xcassets */,
 				9743C5BE1E88A50E00F570ED /* LaunchScreen.storyboard */,
@@ -290,6 +293,7 @@
 				9743C5C81E88A61300F570ED /* URExampleTableViewCell.swift in Sources */,
 				9743C5B81E88A50E00F570ED /* URExampleViewController.swift in Sources */,
 				9743C5B61E88A50E00F570ED /* AppDelegate.swift in Sources */,
+				971D9FBB1E8CE54D002BB42E /* URExampleDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +486,7 @@
 				973B79581E89F9FD0097A9F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9743C5AD1E88A50E00F570ED /* Build configuration list for PBXProject "URExampleScrollingAnimator" */ = {
 			isa = XCConfigurationList;
