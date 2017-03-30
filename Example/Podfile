@@ -7,5 +7,7 @@ target 'URExampleScrollingAnimator' do
 
   # Pods for URExampleScrollingAnimator
   pod 'Reveal-SDK', :configurations => ['Debug']
+  # pod 'URParallaxScrollAnimator', :path => '../'
+  pod 'lottie-ios'
 
 end

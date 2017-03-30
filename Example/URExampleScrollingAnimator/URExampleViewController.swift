@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 let DefaultParallaxScrollRatio: CGFloat = 1.38
 
@@ -19,6 +20,7 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var refreshImageView: UIImageView!
     @IBOutlet var scrollView1: UIScrollView!
     @IBOutlet var refreshImageView1: UIImageView!
+    var lotAnimationView: LOTAnimationView!
 
     @IBOutlet var slParallexScrollRatio: UISlider!
     @IBOutlet var lbParallexScrollRatioMin: UILabel!
@@ -75,6 +77,11 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         self.lbParallexScrollRatioMin.text = "\(self.slParallexScrollRatio.minimumValue)"
         self.lbParallexScrollRatioMax.text = "\(self.slParallexScrollRatio.maximumValue)"
         self.lbParallexScrollRatioCurrent.text = "\(self.slParallexScrollRatio.value)"
+
+        self.lotAnimationView = LOTAnimationView(name: "data")
+        self.refreshImageView1.layoutIfNeeded()
+        self.lotAnimationView.frame = self.refreshImageView1.bounds
+        self.scrollView1.addSubview(self.lotAnimationView)
     }
 
     func initValues() {
@@ -83,7 +90,9 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func initScroll() {
-        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: -self.refreshImageView.bounds.height + 24)
+        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: -self.refreshImageView.bounds.height / 9.0 * 8.0 + 24.0)
+
+        self.preOffsetY1 = -self.refreshImageView.bounds.height / 9.0 * 8.0 + 24.0
 
         self.isHapticFeedbackEnabled = true
     }
@@ -124,16 +133,19 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         let limitImageScrollOffsetY: CGFloat = self.refreshImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
 
         let scrollRatio1: CGFloat = self.scrollView1.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio1
-        if self.preOffsetY1 == 0.0 {
-            self.preOffsetY1 = self.scrollView1.contentOffset.y
-        }
+
+        let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
         if limitImageScrollOffsetY > abs(scrollView.contentOffset.y) {
             self.scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)
             self.scrollView1.contentOffset = CGPoint(x: 0, y: self.preOffsetY1 + (scrollView.contentOffset.y * scrollRatio1 * -1))
 
             self.generateHapticFeedback()
+
+            self.animateRefreshImage(progress: progress)
         } else {
             self.isHapticFeedbackEnabled = false
+
+            self.animateRefreshImage(progress: 1.0)
 
             self.scrollView.contentOffset = CGPoint(x: 0, y: self.scrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
             self.scrollView1.contentOffset = CGPoint(x: 0, y: self.scrollView1.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
@@ -154,6 +166,8 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         self.isHapticFeedbackEnabled = false
+
+        self.animateRefreshImage(progress: 0.0)
     }
 
     var isHapticFeedbackEnabled: Bool = true
@@ -163,6 +177,10 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
         }
+    }
+
+    func animateRefreshImage(progress: CGFloat) {
+        self.lotAnimationView.animationProgress = progress
     }
 }
 

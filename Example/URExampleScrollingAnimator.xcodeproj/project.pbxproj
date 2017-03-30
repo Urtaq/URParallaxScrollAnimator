@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		852E7F9D67401AC3693ADB7C /* Pods_URExampleScrollingAnimator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFFA942052901470CFD9F8B /* Pods_URExampleScrollingAnimator.framework */; };
 		971D9FBB1E8CE54D002BB42E /* URExampleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D9FBA1E8CE54D002BB42E /* URExampleDetailViewController.swift */; };
+		971D9FD11E8D0AEA002BB42E /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 971D9FD01E8D0AEA002BB42E /* data.json */; };
+		971D9FD51E8D0AF3002BB42E /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 971D9FD21E8D0AF3002BB42E /* img_0.png */; };
+		971D9FD61E8D0AF3002BB42E /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 971D9FD31E8D0AF3002BB42E /* img_1.png */; };
+		971D9FD71E8D0AF3002BB42E /* img_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 971D9FD41E8D0AF3002BB42E /* img_2.png */; };
 		973B79531E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */; };
 		9743C5B61E88A50E00F570ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B51E88A50E00F570ED /* AppDelegate.swift */; };
 		9743C5B81E88A50E00F570ED /* URExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B71E88A50E00F570ED /* URExampleViewController.swift */; };
@@ -32,6 +36,10 @@
 		606E1DBE38ED2391C7A8D4A9 /* Pods-URExampleScrollingAnimator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URExampleScrollingAnimator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URExampleScrollingAnimator/Pods-URExampleScrollingAnimator.debug.xcconfig"; sourceTree = "<group>"; };
 		8D6DCD125E5D37143756DA83 /* Pods-URExampleScrollingAnimator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URExampleScrollingAnimator.release.xcconfig"; path = "Pods/Target Support Files/Pods-URExampleScrollingAnimator/Pods-URExampleScrollingAnimator.release.xcconfig"; sourceTree = "<group>"; };
 		971D9FBA1E8CE54D002BB42E /* URExampleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URExampleDetailViewController.swift; sourceTree = "<group>"; };
+		971D9FD01E8D0AEA002BB42E /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = animationAssets/data.json; sourceTree = "<group>"; };
+		971D9FD21E8D0AF3002BB42E /* img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_0.png; path = animationAssets/images/img_0.png; sourceTree = "<group>"; };
+		971D9FD31E8D0AF3002BB42E /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_1.png; path = animationAssets/images/img_1.png; sourceTree = "<group>"; };
+		971D9FD41E8D0AF3002BB42E /* img_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_2.png; path = animationAssets/images/img_2.png; sourceTree = "<group>"; };
 		973B79501E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = URExampleScrollingAnimatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URExampleScrollingAnimatorUITests.swift; sourceTree = "<group>"; };
 		973B79541E89F9FD0097A9F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +90,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		971D9FC61E8D01E6002BB42E /* animationAssets */ = {
+			isa = PBXGroup;
+			children = (
+				971D9FD01E8D0AEA002BB42E /* data.json */,
+				971D9FC91E8D0213002BB42E /* images */,
+			);
+			name = animationAssets;
+			sourceTree = "<group>";
+		};
+		971D9FC91E8D0213002BB42E /* images */ = {
+			isa = PBXGroup;
+			children = (
+				971D9FD21E8D0AF3002BB42E /* img_0.png */,
+				971D9FD31E8D0AF3002BB42E /* img_1.png */,
+				971D9FD41E8D0AF3002BB42E /* img_2.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		973B79511E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +141,7 @@
 		9743C5B41E88A50E00F570ED /* URExampleScrollingAnimator */ = {
 			isa = PBXGroup;
 			children = (
+				971D9FC61E8D01E6002BB42E /* animationAssets */,
 				9743C5B51E88A50E00F570ED /* AppDelegate.swift */,
 				9743C5B71E88A50E00F570ED /* URExampleViewController.swift */,
 				9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */,
@@ -221,9 +249,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971D9FD51E8D0AF3002BB42E /* img_0.png in Resources */,
+				971D9FD11E8D0AEA002BB42E /* data.json in Resources */,
 				9743C5C01E88A50E00F570ED /* LaunchScreen.storyboard in Resources */,
 				9743C5BD1E88A50E00F570ED /* Assets.xcassets in Resources */,
 				9743C5BB1E88A50E00F570ED /* Main.storyboard in Resources */,
+				971D9FD71E8D0AF3002BB42E /* img_2.png in Resources */,
+				971D9FD61E8D0AF3002BB42E /* img_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

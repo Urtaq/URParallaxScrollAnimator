@@ -27,7 +27,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJl-Hq-cpQ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="539"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배경도시_01re" translatesAutoresizingMaskIntoConstraints="NO" id="taJ-hX-Abp">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배경도시_01re" translatesAutoresizingMaskIntoConstraints="NO" id="taJ-hX-Abp">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="taJ-hX-Abp" secondAttribute="height" multiplier="750:187" id="zRA-r1-8bG"/>
