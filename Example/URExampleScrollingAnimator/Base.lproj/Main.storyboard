@@ -217,8 +217,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ju6-Kr-KmS">
-                                <rect key="frame" x="155.5" y="318.5" width="65" height="30"/>
-                                <state key="normal" title="Tap here!"/>
+                                <rect key="frame" x="88.5" y="318.5" width="199" height="30"/>
+                                <state key="normal" title="Tap to check the Feed back!!"/>
                                 <connections>
                                     <action selector="tapped:" destination="ncT-EB-MG8" eventType="touchUpInside" id="AN5-XN-z6v"/>
                                 </connections>

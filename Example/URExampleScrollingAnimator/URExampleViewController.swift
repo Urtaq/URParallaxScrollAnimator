@@ -33,11 +33,11 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
         didSet {
             self.lbParallexScrollRatioCurrent.text = "\(self.parallaxScrollRatio)"
 
-            self.parallaxScrollRatio1 = self.parallaxScrollRatio * 1.2
+            self.parallaxScrollRatio1 = self.parallaxScrollRatio * DefaultParallaxScrollRatio * 1.5
         }
     }
 
-    var parallaxScrollRatio1: CGFloat = DefaultParallaxScrollRatio * 1.2
+    var parallaxScrollRatio1: CGFloat = DefaultParallaxScrollRatio * DefaultParallaxScrollRatio * 1.5
 
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
     var girlTexts: [String] = ["Suzy in korean transitional dress", "Suzy during an interview", "Smiling Suzy", "Brightly Smiling Suzy", "SeolHyun wearing a swimming suit", "SeolHyun standing nicely", "SeolHyun carrying a cute bag", "SeolHyun laying down"]
@@ -90,21 +90,25 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func initScroll() {
-        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: -self.refreshImageView.bounds.height / 9.0 * 8.0 + 24.0)
+        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: (-self.refreshImageView.bounds.height) * CGFloat(self.slParallexScrollRatio.value) / DefaultParallaxScrollRatio)
 
-        self.preOffsetY1 = -self.refreshImageView.bounds.height / 9.0 * 8.0 + 24.0
+        self.preOffsetY1 = (-self.refreshImageView.bounds.height) * CGFloat(self.slParallexScrollRatio.value) / DefaultParallaxScrollRatio
 
         self.isHapticFeedbackEnabled = true
     }
 
     @IBAction func tapInitRatio(_ sender: Any) {
         self.initValues()
+
+        self.initScroll()
     }
 
     @IBAction func changeParallexScrollRatio(_ sender: Any) {
         let value = roundUp(Double(self.slParallexScrollRatio.value), roundUpPosition: 2)
         self.parallaxScrollRatio = CGFloat(value)
         self.slParallexScrollRatio.setValue(Float(value), animated: false)
+
+        self.initScroll()
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,7 +131,9 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     var preOffsetY1: CGFloat = 0.0
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("\(scrollView)")
+        print("tableView's scrollView is \(scrollView), self.scrollView is \(self.scrollView), self.scrollView1 is \(self.scrollView1)")
+
+//        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
 
         let scrollRatio: CGFloat = self.scrollView.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.refreshImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
@@ -182,6 +188,11 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     func animateRefreshImage(progress: CGFloat) {
         self.lotAnimationView.animationProgress = progress
     }
+}
+
+enum URScrollVerticalDirection {
+    case up
+    case down
 }
 
 func roundUp(_ value: Double, roundUpPosition: Int) -> Double {
