@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "URParallaxScrollAnimator"
-  s.version      = "0.0.1"
+  s.version      = "0.1.0"
   s.summary      = "Show an animation as far as moved scroll while scrolling at the scroll view"
 
   # This description is used to generate tags and improve search results.
@@ -52,10 +52,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Urtaq" => "email@address.com" }
+  s.author             = { "jegumhon" => "jegumhon@gmail.com" }
   # Or just: s.author    = "Urtaq"
   # s.authors            = { "Urtaq" => "email@address.com" }
-  # s.social_media_url   = "http://twitter.com/Urtaq"
+  s.social_media_url   = "http://twitter.com/Jegumhon"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -63,8 +63,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "8.1"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -79,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/jegumhon/URParallaxScrollAnimator.git", :commit => "765730570f09a45c95e5ec37a8781e97a4df9f9c" }
+  s.source       = { :git => "https://github.com/jegumhon/URParallaxScrollAnimator.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,11 +89,16 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  # s.source_files  = "Sources", "Classes/**/*.{swift,h,m}"
+  # s.exclude_files = "Example"
 
   # s.public_header_files = "Classes/**/*.h"
 
+  s.default_subspec = "Core"
+
+  s.subspec "Core" do |ss|
+      ss.source_files = "Source/*.swift"
+  end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -132,6 +136,6 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "lottie-ios"
 
 end

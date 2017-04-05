@@ -20,6 +20,7 @@
 		9743C5BD1E88A50E00F570ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9743C5BC1E88A50E00F570ED /* Assets.xcassets */; };
 		9743C5C01E88A50E00F570ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9743C5BE1E88A50E00F570ED /* LaunchScreen.storyboard */; };
 		9743C5C81E88A61300F570ED /* URExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */; };
+		97D46CD81E94F31E002771E6 /* URExample2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D46CD71E94F31E002771E6 /* URExample2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		9743C5BF1E88A50E00F570ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9743C5C11E88A50E00F570ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URExampleTableViewCell.swift; sourceTree = "<group>"; };
+		97D46CD71E94F31E002771E6 /* URExample2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URExample2ViewController.swift; sourceTree = "<group>"; };
 		AEFFA942052901470CFD9F8B /* Pods_URExampleScrollingAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URExampleScrollingAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 			children = (
 				9743C5B41E88A50E00F570ED /* URExampleScrollingAnimator */,
 				973B79511E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests */,
+				97EC40281E94862C001A9BE5 /* Supports */,
 				9743C5B31E88A50E00F570ED /* Products */,
 				776F59199BC4FCED95761D18 /* Pods */,
 				7CB905E429838A602135649C /* Frameworks */,
@@ -146,12 +149,21 @@
 				9743C5B71E88A50E00F570ED /* URExampleViewController.swift */,
 				9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */,
 				971D9FBA1E8CE54D002BB42E /* URExampleDetailViewController.swift */,
+				97D46CD71E94F31E002771E6 /* URExample2ViewController.swift */,
 				9743C5B91E88A50E00F570ED /* Main.storyboard */,
 				9743C5BC1E88A50E00F570ED /* Assets.xcassets */,
 				9743C5BE1E88A50E00F570ED /* LaunchScreen.storyboard */,
 				9743C5C11E88A50E00F570ED /* Info.plist */,
 			);
 			path = URExampleScrollingAnimator;
+			sourceTree = "<group>";
+		};
+		97EC40281E94862C001A9BE5 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Supports;
+			path = URExampleScrollingAnimatorUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +338,7 @@
 				9743C5B81E88A50E00F570ED /* URExampleViewController.swift in Sources */,
 				9743C5B61E88A50E00F570ED /* AppDelegate.swift in Sources */,
 				971D9FBB1E8CE54D002BB42E /* URExampleDetailViewController.swift in Sources */,
+				97D46CD81E94F31E002771E6 /* URExample2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,21 +1,19 @@
 //
-//  ViewController.swift
+//  URExample2ViewController.swift
 //  URExampleScrollingAnimator
 //
-//  Created by DongSoo Lee on 2017. 3. 27..
+//  Created by DongSoo Lee on 2017. 4. 5..
 //  Copyright © 2017년 zigbang. All rights reserved.
 //
 
 import UIKit
 import Lottie
 
-let DefaultParallaxScrollRatio: CGFloat = 1.38
-
-class URExampleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class URExample2ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
 
-//    @IBOutlet var parallaxBackgroundView: UIView!
+    //    @IBOutlet var parallaxBackgroundView: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var refreshImageView: UIImageView!
     @IBOutlet var scrollView1: UIScrollView!
@@ -89,7 +87,7 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func initScroll() {
-        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: (-self.refreshImageView.bounds.height) * CGFloat(self.slParallexScrollRatio.value) / DefaultParallaxScrollRatio)
+        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: (-self.refreshImageView.bounds.height) * self.parallaxScrollRatio / DefaultParallaxScrollRatio)
 
         self.preOffsetY1 = (-self.refreshImageView.bounds.height) * CGFloat(self.slParallexScrollRatio.value) / DefaultParallaxScrollRatio
 
@@ -133,7 +131,7 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print("tableView's scrollView is \(scrollView), self.scrollView is \(self.scrollView), self.scrollView1 is \(self.scrollView1)")
 
-//        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
+        //        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
 
         let scrollRatio: CGFloat = self.scrollView.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.refreshImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
@@ -188,14 +186,4 @@ class URExampleViewController: UIViewController, UITableViewDelegate, UITableVie
     func animateRefreshImage(progress: CGFloat) {
         self.lotAnimationView.animationProgress = progress
     }
-}
-
-enum URScrollVerticalDirection {
-    case up
-    case down
-}
-
-func roundUp(_ value: Double, roundUpPosition: Int) -> Double {
-    let roundUpPositionBy10 = pow(10.0, Double(roundUpPosition))
-    return round(value * roundUpPositionBy10) / roundUpPositionBy10
 }

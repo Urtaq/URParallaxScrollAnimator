@@ -1,13 +1,16 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'URExampleScrollingAnimator' do
+target 'URParallaxScrollAnimator' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for URExampleScrollingAnimator
-  pod 'Reveal-SDK', :configurations => ['Debug']
-  pod 'URParallaxScrollAnimator', :path => '../'
-  pod 'lottie-ios'
+  # Pods for URParallaxScrollAnimator
+  pod 'lottie-ios'  
+
+  target 'URParallaxScrollAnimatorTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
 end
