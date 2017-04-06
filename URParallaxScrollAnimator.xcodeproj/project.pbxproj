@@ -10,6 +10,8 @@
 		55205CFBDBCD8970831741C9 /* Pods_URParallaxScrollAnimator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231CB68967B6F6007AE6BFAB /* Pods_URParallaxScrollAnimator.framework */; };
 		92167F046EE8FB140EFCAF9F /* Pods_URParallaxScrollAnimatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D9D0C4063B2439A95A599E /* Pods_URParallaxScrollAnimatorTests.framework */; };
 		97EC402B1E9489A3001A9BE5 /* URParallaxScrollAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC402A1E9489A3001A9BE5 /* URParallaxScrollAnimator.swift */; };
+		97F95B861E95D42400860014 /* URParallaxScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B851E95D42400860014 /* URParallaxScrollDelegate.swift */; };
+		97F95B881E95D42F00860014 /* URParallaxScrollAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B871E95D42F00860014 /* URParallaxScrollAnimatable.swift */; };
 		OBJ_28 /* URParallaxScrollAnimatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* URParallaxScrollAnimatorTests.swift */; };
 		OBJ_30 /* URParallaxScrollAnimator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* URParallaxScrollAnimator.framework */; };
 /* End PBXBuildFile section */
@@ -32,6 +34,8 @@
 		48F803FB9335E97571D1FFDC /* Pods-URParallaxScrollAnimator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URParallaxScrollAnimator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URParallaxScrollAnimator/Pods-URParallaxScrollAnimator.debug.xcconfig"; sourceTree = "<group>"; };
 		97EC40291E94867B001A9BE5 /* URParallaxScrollAnimator.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = URParallaxScrollAnimator.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97EC402A1E9489A3001A9BE5 /* URParallaxScrollAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URParallaxScrollAnimator.swift; sourceTree = "<group>"; };
+		97F95B851E95D42400860014 /* URParallaxScrollDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URParallaxScrollDelegate.swift; sourceTree = "<group>"; };
+		97F95B871E95D42F00860014 /* URParallaxScrollAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URParallaxScrollAnimatable.swift; sourceTree = "<group>"; };
 		AC1A1DAA88A10BC2227FB9C8 /* Pods-URParallaxScrollAnimatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URParallaxScrollAnimatorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-URParallaxScrollAnimatorTests/Pods-URParallaxScrollAnimatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		OBJ_11 /* URParallaxScrollAnimatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URParallaxScrollAnimatorTests.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Example; sourceTree = SOURCE_ROOT; };
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				97EC402A1E9489A3001A9BE5 /* URParallaxScrollAnimator.swift */,
+				97F95B851E95D42400860014 /* URParallaxScrollDelegate.swift */,
+				97F95B871E95D42F00860014 /* URParallaxScrollAnimatable.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -285,6 +291,8 @@
 			buildActionMask = 0;
 			files = (
 				97EC402B1E9489A3001A9BE5 /* URParallaxScrollAnimator.swift in Sources */,
+				97F95B881E95D42F00860014 /* URParallaxScrollAnimatable.swift in Sources */,
+				97F95B861E95D42400860014 /* URParallaxScrollDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
