@@ -9,20 +9,26 @@
 import UIKit
 import Lottie
 
-let DefaultParallaxScrollRatio: CGFloat = 1.38
-let DefaultBackgroundColor: UIColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
-
 public enum URParallaxScrollAnimationType {
     case upperLayer
     case lowerLayer
     case both
 }
 
+public enum URParallaxScrollViewPosition {
+    case upper
+    case lower
+    case both
+}
+
 public struct URParallaxScrollConfiguration {
-    var parallaxScrollRatio: CGFloat = DefaultParallaxScrollRatio
+    public static let DefaultParallaxScrollRatio: CGFloat = 1.38
+    public static let DefaultBackgroundColor: UIColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
+
+    public var parallaxScrollRatio: CGFloat = URParallaxScrollConfiguration.DefaultParallaxScrollRatio
 
     var lowerParallaxScrollRatio: CGFloat {
-        return self.parallaxScrollRatio * DefaultParallaxScrollRatio * 1.5
+        return self.parallaxScrollRatio * URParallaxScrollConfiguration.DefaultParallaxScrollRatio * 1.5
     }
 
     var parallaxScrollType: URParallaxScrollAnimationType = .both
@@ -35,10 +41,14 @@ public struct URParallaxScrollConfiguration {
     var upperLottieData: String!
     var lowerLottieData: String!
 
-    init(parallaxScrollRatio: CGFloat = DefaultParallaxScrollRatio, parallaxScrollType: URParallaxScrollAnimationType = .both, backgroundColor: UIColor = DefaultBackgroundColor, upperImage: UIImage!, lowerImage: UIImage!, upperLottieData: String! = nil, lowerLottieData: String! = nil) {
+    init(parallaxScrollRatio: CGFloat = URParallaxScrollConfiguration.DefaultParallaxScrollRatio, parallaxScrollType: URParallaxScrollAnimationType = .lowerLayer, backgroundColor: UIColor = DefaultBackgroundColor, upperImage: UIImage!, lowerImage: UIImage!, upperLottieData: String! = nil, lowerLottieData: String! = nil) {
         self.parallaxScrollRatio = parallaxScrollRatio
         self.parallaxScrollType = parallaxScrollType
         self.backgroundColor = backgroundColor
+
+        if (upperImage != nil && upperLottieData != nil) || (lowerImage != nil && lowerLottieData != nil) {
+            fatalError("You need to choose whether the image is UIImage or LottieAnimation!!")
+        }
 
         self.upperImage = upperImage
         self.lowerImage = lowerImage
@@ -48,7 +58,7 @@ public struct URParallaxScrollConfiguration {
     }
 }
 
-public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakable, URParallaxScrollAnimatable {
+public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakable, URParallaxScrollAnimatable, URParallaxScrollDelegate {
 
     public var configuration: URParallaxScrollConfiguration!
 
@@ -64,10 +74,20 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
 
     public var lowerLotAnimationView: LOTAnimationView!
 
+    public var delegateParallaxScroll: URParallaxScrollDelegate!
+
+    public var preOffsetY: CGFloat = 0.0
+    public var preOffsetY1: CGFloat = 0.0
+
+    public var isHapticFeedbackEnabled: Bool = true
+
     fileprivate init(_ base: UITableView) {
         self.target = base
         super.init()
-        self.initParallaxScrollViews()
+
+        guard let _ = self.target.delegate else {
+            fatalError("The tableview has to have the UITableViewDelegate instance!!")
+        }
     }
 }
 

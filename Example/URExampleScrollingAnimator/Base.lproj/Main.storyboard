@@ -265,48 +265,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvB-7T-5dv">
-                                <rect key="frame" x="0.0" y="64" width="375" height="539"/>
-                                <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배경도시_01re" translatesAutoresizingMaskIntoConstraints="NO" id="N45-5R-ye2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="N45-5R-ye2" secondAttribute="height" multiplier="750:187" id="Hpb-kK-v5k"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="N45-5R-ye2" firstAttribute="leading" secondItem="kvB-7T-5dv" secondAttribute="leading" id="2qa-cA-rH6"/>
-                                    <constraint firstItem="N45-5R-ye2" firstAttribute="top" secondItem="kvB-7T-5dv" secondAttribute="top" id="79I-xH-c0S"/>
-                                    <constraint firstItem="N45-5R-ye2" firstAttribute="width" secondItem="kvB-7T-5dv" secondAttribute="width" id="jsm-Rq-W0A"/>
-                                    <constraint firstAttribute="trailing" secondItem="N45-5R-ye2" secondAttribute="trailing" id="lEf-7K-09N"/>
-                                    <constraint firstAttribute="bottom" secondItem="N45-5R-ye2" secondAttribute="bottom" id="xg9-Yd-WvF"/>
-                                </constraints>
-                            </scrollView>
-                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppG-Nh-ehx">
-                                <rect key="frame" x="0.0" y="64" width="375" height="539"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="누끼설현_01re" translatesAutoresizingMaskIntoConstraints="NO" id="aNU-7F-Rvr">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="aNU-7F-Rvr" secondAttribute="height" multiplier="750:187" id="9L4-H2-XIO"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="aNU-7F-Rvr" firstAttribute="top" secondItem="ppG-Nh-ehx" secondAttribute="top" id="Ca2-fD-Npl"/>
-                                    <constraint firstItem="aNU-7F-Rvr" firstAttribute="leading" secondItem="ppG-Nh-ehx" secondAttribute="leading" id="RXh-BA-qo8"/>
-                                    <constraint firstAttribute="width" secondItem="ppG-Nh-ehx" secondAttribute="height" multiplier="750:187" id="ShW-V1-utC"/>
-                                    <constraint firstAttribute="trailing" secondItem="aNU-7F-Rvr" secondAttribute="trailing" id="cTR-o2-ZMD"/>
-                                    <constraint firstAttribute="bottom" secondItem="aNU-7F-Rvr" secondAttribute="bottom" id="jHV-Uv-E8o"/>
-                                    <constraint firstItem="aNU-7F-Rvr" firstAttribute="width" secondItem="ppG-Nh-ehx" secondAttribute="width" id="rkv-aZ-5FS"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ShW-V1-utC"/>
-                                    </mask>
-                                </variation>
-                            </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="911-ba-wN4">
                                 <rect key="frame" x="0.0" y="64" width="375" height="539"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -396,29 +354,21 @@
                             <constraint firstItem="9Wa-Bw-YUm" firstAttribute="top" secondItem="ae6-ot-tUI" secondAttribute="bottom" constant="20" id="1g8-ih-N0p"/>
                             <constraint firstItem="dNy-Ky-xLE" firstAttribute="centerY" secondItem="9aX-69-QgY" secondAttribute="centerY" id="2JW-cb-4IN"/>
                             <constraint firstItem="9aX-69-QgY" firstAttribute="leading" secondItem="NiE-FF-TMZ" secondAttribute="leading" constant="-10" id="4CO-Ek-9VS"/>
-                            <constraint firstItem="ppG-Nh-ehx" firstAttribute="top" secondItem="5bd-Yd-2tr" secondAttribute="bottom" id="5ow-pp-qbT"/>
-                            <constraint firstItem="kvB-7T-5dv" firstAttribute="bottom" secondItem="ppG-Nh-ehx" secondAttribute="bottom" id="6eg-zQ-hPz"/>
-                            <constraint firstItem="kvB-7T-5dv" firstAttribute="trailing" secondItem="ppG-Nh-ehx" secondAttribute="trailing" id="7Ea-x6-rj4"/>
                             <constraint firstItem="9aX-69-QgY" firstAttribute="bottom" secondItem="NiE-FF-TMZ" secondAttribute="bottom" constant="20" id="BhY-dF-Gec"/>
                             <constraint firstItem="9Wa-Bw-YUm" firstAttribute="top" secondItem="911-ba-wN4" secondAttribute="bottom" constant="64" id="EZE-va-fVH"/>
                             <constraint firstItem="911-ba-wN4" firstAttribute="top" secondItem="5bd-Yd-2tr" secondAttribute="bottom" id="EsG-18-y1U"/>
                             <constraint firstItem="9Wa-Bw-YUm" firstAttribute="top" secondItem="m4C-Zb-3nm" secondAttribute="bottom" constant="20" id="FSe-J5-JZf"/>
-                            <constraint firstAttribute="trailing" secondItem="ppG-Nh-ehx" secondAttribute="trailing" id="Fl9-U6-c34"/>
                             <constraint firstItem="9aX-69-QgY" firstAttribute="centerY" secondItem="VlA-HW-ScO" secondAttribute="centerY" id="Fwp-jw-YKv"/>
                             <constraint firstAttribute="trailing" secondItem="NiE-FF-TMZ" secondAttribute="trailing" constant="80" id="JKh-Tt-e9d"/>
-                            <constraint firstItem="kvB-7T-5dv" firstAttribute="leading" secondItem="ppG-Nh-ehx" secondAttribute="leading" id="JYd-4n-SBQ"/>
                             <constraint firstItem="ae6-ot-tUI" firstAttribute="leading" secondItem="e3H-He-mvM" secondAttribute="leading" constant="10" id="UM6-LX-iKv"/>
                             <constraint firstItem="dNy-Ky-xLE" firstAttribute="centerX" secondItem="NiE-FF-TMZ" secondAttribute="centerX" id="Va7-K9-ZMn"/>
                             <constraint firstAttribute="trailing" secondItem="m4C-Zb-3nm" secondAttribute="trailing" constant="10" id="Ya0-bJ-aKP"/>
                             <constraint firstItem="9Wa-Bw-YUm" firstAttribute="top" secondItem="NiE-FF-TMZ" secondAttribute="bottom" constant="20" id="aKI-jR-y4a"/>
-                            <constraint firstItem="911-ba-wN4" firstAttribute="bottom" secondItem="ppG-Nh-ehx" secondAttribute="bottom" id="b4c-Xu-CBu"/>
-                            <constraint firstItem="kvB-7T-5dv" firstAttribute="top" secondItem="ppG-Nh-ehx" secondAttribute="top" id="gD1-WG-qOl"/>
                             <constraint firstAttribute="trailing" secondItem="911-ba-wN4" secondAttribute="trailing" id="iXx-2U-tKw"/>
                             <constraint firstItem="911-ba-wN4" firstAttribute="leading" secondItem="e3H-He-mvM" secondAttribute="leading" id="kZi-Qj-4h7"/>
                             <constraint firstItem="VlA-HW-ScO" firstAttribute="leading" secondItem="NiE-FF-TMZ" secondAttribute="trailing" constant="-10" id="ode-Ai-d32"/>
                             <constraint firstItem="m4C-Zb-3nm" firstAttribute="centerY" secondItem="ae6-ot-tUI" secondAttribute="centerY" id="qx8-AJ-oyp"/>
                             <constraint firstItem="NiE-FF-TMZ" firstAttribute="centerY" secondItem="ae6-ot-tUI" secondAttribute="centerY" id="rrR-yx-ErY"/>
-                            <constraint firstItem="ppG-Nh-ehx" firstAttribute="leading" secondItem="e3H-He-mvM" secondAttribute="leading" id="sDG-ap-y3r"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Main" id="SoT-f7-qpx">
@@ -433,10 +383,6 @@
                         <outlet property="lbParallexScrollRatioCurrent" destination="dNy-Ky-xLE" id="5iZ-eW-a3g"/>
                         <outlet property="lbParallexScrollRatioMax" destination="VlA-HW-ScO" id="I2e-n0-cW2"/>
                         <outlet property="lbParallexScrollRatioMin" destination="9aX-69-QgY" id="LMB-XY-zeY"/>
-                        <outlet property="refreshImageView" destination="aNU-7F-Rvr" id="U5M-KB-CZS"/>
-                        <outlet property="refreshImageView1" destination="N45-5R-ye2" id="opf-ce-Y03"/>
-                        <outlet property="scrollView" destination="ppG-Nh-ehx" id="T98-oc-1Mz"/>
-                        <outlet property="scrollView1" destination="kvB-7T-5dv" id="O9s-Z0-fvt"/>
                         <outlet property="slParallexScrollRatio" destination="NiE-FF-TMZ" id="DGg-AW-aFP"/>
                         <outlet property="tableView" destination="911-ba-wN4" id="t69-KW-Lbm"/>
                     </connections>
@@ -469,6 +415,6 @@
         <image name="배경도시_01re" width="750" height="187"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="W2N-U8-lcU"/>
+        <segue reference="I13-Ce-qWG"/>
     </inferredMetricsTieBreakers>
 </document>

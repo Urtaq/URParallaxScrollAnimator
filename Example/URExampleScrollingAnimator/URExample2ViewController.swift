@@ -7,18 +7,11 @@
 //
 
 import UIKit
-import Lottie
+import URParallaxScrollAnimator
 
 class URExample2ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
-
-    //    @IBOutlet var parallaxBackgroundView: UIView!
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var refreshImageView: UIImageView!
-    @IBOutlet var scrollView1: UIScrollView!
-    @IBOutlet var refreshImageView1: UIImageView!
-    var lotAnimationView: LOTAnimationView!
 
     @IBOutlet var slParallexScrollRatio: UISlider!
     @IBOutlet var lbParallexScrollRatioMin: UILabel!
@@ -26,14 +19,6 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var lbParallexScrollRatioCurrent: UILabel!
 
     @IBOutlet var btnInitRatio: UIButton!
-
-    var parallaxScrollRatio: CGFloat = DefaultParallaxScrollRatio {
-        didSet {
-            self.parallaxScrollRatio1 = self.parallaxScrollRatio * DefaultParallaxScrollRatio * 1.5
-        }
-    }
-
-    var parallaxScrollRatio1: CGFloat = DefaultParallaxScrollRatio * DefaultParallaxScrollRatio * 1.5
 
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
     var girlTexts: [String] = ["Suzy in korean transitional dress", "Suzy during an interview", "Smiling Suzy", "Brightly Smiling Suzy", "SeolHyun wearing a swimming suit", "SeolHyun standing nicely", "SeolHyun carrying a cute bag", "SeolHyun laying down"]
@@ -57,56 +42,35 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        self.initScroll()
-    }
-
     func initView() {
-        self.scrollView1.backgroundColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
-
         self.btnInitRatio.layer.cornerRadius = 5.0
-
-        self.initValues()
 
         self.lbParallexScrollRatioMin.text = "\(self.slParallexScrollRatio.minimumValue)"
         self.lbParallexScrollRatioMax.text = "\(self.slParallexScrollRatio.maximumValue)"
         self.lbParallexScrollRatioCurrent.text = "\(self.slParallexScrollRatio.value)"
 
-        self.lotAnimationView = LOTAnimationView(name: "data")
-        self.refreshImageView1.layoutIfNeeded()
-        self.lotAnimationView.frame = self.refreshImageView1.bounds
-        self.scrollView1.addSubview(self.lotAnimationView)
+        self.tableView.parallaxScrollExtension.makeParallaxScrollExtensionConfiguration(upperImage: #imageLiteral(resourceName: "누끼설현_01re"), lowerImage: nil, lowerLottieData: "data")
+
+        self.initValues()
     }
 
     func initValues() {
-        self.parallaxScrollRatio = DefaultParallaxScrollRatio
-        self.slParallexScrollRatio.value = Float(DefaultParallaxScrollRatio)
-        self.lbParallexScrollRatioCurrent.text = "\(self.parallaxScrollRatio)"
-    }
+        self.slParallexScrollRatio.value = Float(URParallaxScrollConfiguration.DefaultParallaxScrollRatio)
+        self.lbParallexScrollRatioCurrent.text = "\(URParallaxScrollConfiguration.DefaultParallaxScrollRatio)"
 
-    func initScroll() {
-        self.scrollView1.contentOffset = CGPoint(x: self.scrollView1.contentOffset.x, y: (-self.refreshImageView.bounds.height) * self.parallaxScrollRatio / DefaultParallaxScrollRatio)
-
-        self.preOffsetY1 = (-self.refreshImageView.bounds.height) * CGFloat(self.slParallexScrollRatio.value) / DefaultParallaxScrollRatio
-
-        self.isHapticFeedbackEnabled = true
+        self.tableView.parallaxScrollExtension.configuration.parallaxScrollRatio = URParallaxScrollConfiguration.DefaultParallaxScrollRatio
     }
 
     @IBAction func tapInitRatio(_ sender: Any) {
         self.initValues()
-
-        self.initScroll()
     }
 
     @IBAction func changeParallexScrollRatio(_ sender: Any) {
         let value = roundUp(Double(self.slParallexScrollRatio.value), roundUpPosition: 2)
-        self.parallaxScrollRatio = CGFloat(value)
         self.slParallexScrollRatio.setValue(Float(value), animated: false)
-        self.lbParallexScrollRatioCurrent.text = "\(self.parallaxScrollRatio)"
+        self.lbParallexScrollRatioCurrent.text = "\(value)"
 
-        self.initScroll()
+        self.tableView.parallaxScrollExtension.configuration.parallaxScrollRatio = CGFloat(value)
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,65 +89,19 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    // MARK:- URParallaxScrollDelegate
     var preOffsetY: CGFloat = 0.0
     var preOffsetY1: CGFloat = 0.0
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("tableView's scrollView is \(scrollView), self.scrollView is \(self.scrollView), self.scrollView1 is \(self.scrollView1)")
-
-        //        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
-
-        let scrollRatio: CGFloat = self.scrollView.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio
-        let limitImageScrollOffsetY: CGFloat = self.refreshImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
-
-        let scrollRatio1: CGFloat = self.scrollView1.contentSize.height / scrollView.contentSize.height * self.parallaxScrollRatio1
-
-        let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
-        if limitImageScrollOffsetY > abs(scrollView.contentOffset.y) {
-            self.scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)
-            self.scrollView1.contentOffset = CGPoint(x: 0, y: self.preOffsetY1 + (scrollView.contentOffset.y * scrollRatio1 * -1))
-
-            self.generateHapticFeedback()
-
-            self.animateRefreshImage(progress: progress)
-        } else {
-            self.isHapticFeedbackEnabled = false
-
-            self.animateRefreshImage(progress: 1.0)
-
-            self.scrollView.contentOffset = CGPoint(x: 0, y: self.scrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
-            self.scrollView1.contentOffset = CGPoint(x: 0, y: self.scrollView1.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
-        }
-
-        self.preOffsetY = scrollView.contentOffset.y
-
-        print("moved is \(scrollView.contentOffset.y * scrollRatio)")
-
-        if scrollView.contentOffset.y == 0 {
-            self.initScroll()
-        }
+        self.tableView.parallaxScrollExtension.parallaxScrollViewDidScroll(scrollView)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.isHapticFeedbackEnabled = true
+        self.tableView.parallaxScrollExtension.parallaxScrollViewWillBeginDragging(scrollView)
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.isHapticFeedbackEnabled = false
-
-        self.animateRefreshImage(progress: 0.0)
-    }
-
-    var isHapticFeedbackEnabled: Bool = true
-
-    func generateHapticFeedback() {
-        if self.isHapticFeedbackEnabled {
-            let generator = UISelectionFeedbackGenerator()
-            generator.selectionChanged()
-        }
-    }
-
-    func animateRefreshImage(progress: CGFloat) {
-        self.lotAnimationView.animationProgress = progress
+        self.tableView.parallaxScrollExtension.parallaxScrollViewDidEndDragging()
     }
 }

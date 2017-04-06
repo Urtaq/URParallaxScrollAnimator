@@ -9,6 +9,7 @@
 import UIKit
 
 public protocol URParallaxScrollDelegate: class {
+//    var delegateParallaxScroll: URParallaxScrollDelegate! { get set }
 
     var preOffsetY: CGFloat { get set }
     var preOffsetY1: CGFloat { get set }
@@ -21,25 +22,24 @@ public protocol URParallaxScrollDelegate: class {
 
     func parallaxScrollViewDidScroll(_ scrollView: UIScrollView)
 
-    func parallaxScrollViewWillBeginDragging()
+    func parallaxScrollViewWillBeginDragging(_ scrollView: UIScrollView)
 
     func parallaxScrollViewDidEndDragging()
 }
 
 extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, Self: URParallaxScrollAnimatable {
 
-    func initScroll() {
+    public func initScroll() {
         // init values
-        self.configuration.parallaxScrollRatio = DefaultParallaxScrollRatio
-
+        self.configuration.parallaxScrollRatio = self.configuration.parallaxScrollRatio
         // init scroll position
-        self.preOffsetY1 = (-self.upperImageView.bounds.height) * self.configuration.parallaxScrollRatio / DefaultParallaxScrollRatio
+        self.preOffsetY1 = (-self.upperImageView.bounds.height) * self.configuration.parallaxScrollRatio / URParallaxScrollConfiguration.DefaultParallaxScrollRatio
         self.lowerScrollView.contentOffset = CGPoint(x: self.lowerScrollView.contentOffset.x, y: self.preOffsetY1)
 
         self.isHapticFeedbackEnabled = true
     }
 
-    fileprivate func generateHapticFeedback() {
+    public func generateHapticFeedback() {
         if self.isHapticFeedbackEnabled {
             if #available(iOS 10.0, *) {
                 let generator = UISelectionFeedbackGenerator()
@@ -48,9 +48,9 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         }
     }
 
-    func parallaxScrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func parallaxScrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        //        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
+//        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
 
         let scrollRatio: CGFloat = self.upperScrollView.contentSize.height / scrollView.contentSize.height * self.configuration.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
@@ -81,11 +81,15 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         }
     }
 
-    func parallaxScrollViewWillBeginDragging() {
+    public func parallaxScrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.isHapticFeedbackEnabled = true
+
+        if scrollView.contentOffset.y == 0 {
+            self.initScroll()
+        }
     }
 
-    func parallaxScrollViewDidEndDragging() {
+    public func parallaxScrollViewDidEndDragging() {
         self.isHapticFeedbackEnabled = false
         
         self.animateRefreshImage(progress: 0.0, parallaxScrollType: self.configuration.parallaxScrollType)

@@ -123,9 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				97EC402A1E9489A3001A9BE5 /* URParallaxScrollAnimator.swift */,
-				97F95B851E95D42400860014 /* URParallaxScrollDelegate.swift */,
 				97F95B891E95D98400860014 /* URParallaxScrollAnimatorMakable.swift */,
 				97F95B871E95D42F00860014 /* URParallaxScrollAnimatable.swift */,
+				97F95B851E95D42400860014 /* URParallaxScrollDelegate.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
