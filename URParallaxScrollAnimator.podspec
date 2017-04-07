@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "URParallaxScrollAnimator"
-  s.version      = "0.5.5"
+  s.version      = "0.6.0"
   s.summary      = "Show an animation as far as moved scroll while scrolling at the scroll view"
 
   # This description is used to generate tags and improve search results.
