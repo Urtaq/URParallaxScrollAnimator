@@ -24,7 +24,7 @@ public protocol URParallaxScrollDelegate: class {
 
     func parallaxScrollViewWillBeginDragging(_ scrollView: UIScrollView)
 
-    func parallaxScrollViewDidEndDragging()
+    func parallaxScrollViewDidEndDragging(releaseAction: (() -> Void)?)
 }
 
 extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, Self: URParallaxScrollAnimatable {
@@ -52,15 +52,13 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
 //        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
 
-        let scrollRatio: CGFloat = self.upperScrollView.contentSize.height / scrollView.contentSize.height * self.configuration.parallaxScrollRatio
+        let scrollRatio: CGFloat = self.upperScrollView.contentSize.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
-
-        let scrollRatio1: CGFloat = self.lowerScrollView.contentSize.height / scrollView.contentSize.height * self.configuration.lowerParallaxScrollRatio
 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
         if limitImageScrollOffsetY > abs(scrollView.contentOffset.y) {
             self.upperScrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)
-            self.lowerScrollView.contentOffset = CGPoint(x: 0, y: self.preOffsetY1 + (scrollView.contentOffset.y * scrollRatio1 * -1))
+            self.lowerScrollView.contentOffset = CGPoint(x: 0, y: self.preOffsetY1 + self.preOffsetY1 * progress * -1 + scrollView.contentOffset.y * scrollRatio)
 
             self.generateHapticFeedback()
 
@@ -89,9 +87,12 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         }
     }
 
-    public func parallaxScrollViewDidEndDragging() {
+    public func parallaxScrollViewDidEndDragging(releaseAction: (() -> Void)? = nil) {
         self.isHapticFeedbackEnabled = false
         
         self.animateRefreshImage(progress: 0.0, parallaxScrollType: self.configuration.parallaxScrollType)
+
+        guard let release = releaseAction else { return }
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(execute: release)
     }
 }

@@ -27,6 +27,7 @@ public struct URParallaxScrollConfiguration {
 
     public var parallaxScrollRatio: CGFloat = URParallaxScrollConfiguration.DefaultParallaxScrollRatio
 
+    /// unused...
     var lowerParallaxScrollRatio: CGFloat {
         return self.parallaxScrollRatio * URParallaxScrollConfiguration.DefaultParallaxScrollRatio * 1.5
     }
