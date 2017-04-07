@@ -21,6 +21,11 @@ public enum URParallaxScrollViewPosition {
     case both
 }
 
+public enum URParallaxScrollVerticalDirection {
+    case up
+    case down
+}
+
 public struct URParallaxScrollConfiguration {
     public static let DefaultParallaxScrollRatio: CGFloat = 1.38
     public static let DefaultBackgroundColor: UIColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
@@ -77,8 +82,9 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
 
     public var delegateParallaxScroll: URParallaxScrollDelegate!
 
-    public var preOffsetY: CGFloat = 0.0
-    public var preOffsetY1: CGFloat = 0.0
+    public var startOffsetY: CGFloat = 0.0
+    public var preOffsetYUpper: CGFloat = 0.0
+    public var preOffsetYLower: CGFloat = 0.0
 
     public var isTriggeredRefresh: Bool = false
 
@@ -109,11 +115,6 @@ extension UITableView {
 
         return parallaxScrollEx
     }
-}
-
-fileprivate enum URScrollVerticalDirection {
-    case up
-    case down
 }
 
 // MARK:- Util

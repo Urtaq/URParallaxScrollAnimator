@@ -11,8 +11,9 @@ import UIKit
 public protocol URParallaxScrollDelegate: class {
 //    var delegateParallaxScroll: URParallaxScrollDelegate! { get set }
 
-    var preOffsetY: CGFloat { get set }
-    var preOffsetY1: CGFloat { get set }
+    var startOffsetY: CGFloat { get set }
+    var preOffsetYUpper: CGFloat { get set }
+    var preOffsetYLower: CGFloat { get set }
 
     func initScroll()
 
@@ -36,8 +37,8 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         // init values
         self.configuration.parallaxScrollRatio = self.configuration.parallaxScrollRatio
         // init scroll position
-        self.preOffsetY1 = (-self.upperImageView.bounds.height) * self.configuration.parallaxScrollRatio / URParallaxScrollConfiguration.DefaultParallaxScrollRatio
-        self.lowerScrollView.contentOffset = CGPoint(x: self.lowerScrollView.contentOffset.x, y: self.preOffsetY1)
+        self.preOffsetYLower = (-self.upperImageView.bounds.height) * self.configuration.parallaxScrollRatio / URParallaxScrollConfiguration.DefaultParallaxScrollRatio
+        self.lowerScrollView.contentOffset = CGPoint(x: self.lowerScrollView.contentOffset.x, y: self.preOffsetYLower)
 
         self.isTriggeredRefresh = false
         self.isHapticFeedbackEnabled = true
@@ -53,36 +54,45 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
     }
 
     public func parallaxScrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.startOffsetY == 0.0 {
+            self.startOffsetY = scrollView.contentOffset.y
+        }
 
-//        let scrollDirection: URScrollVerticalDirection = self.preOffsetY > scrollView.contentOffset.y ? .down : .up
+//        let scrollDirection: URParallaxScrollVerticalDirection = (self.preOffsetYUpper > scrollView.contentOffset.y && scrollView.contentOffset.y < 0) ? .down : .up
 
         let scrollRatio: CGFloat = self.upperScrollView.contentSize.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
         if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
+            print("in limit")
             if self.isTriggeredRefresh {
                 // prevent to be back...
                 scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: true)
             }
 
             self.upperScrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)
-            self.lowerScrollView.contentOffset = CGPoint(x: 0, y: self.preOffsetY1 + self.preOffsetY1 * progress * -1 + scrollView.contentOffset.y * scrollRatio)
+            self.lowerScrollView.contentOffset = CGPoint(x: 0, y: self.preOffsetYLower + self.preOffsetYLower * progress * -1 + scrollView.contentOffset.y * scrollRatio)
 
             self.generateHapticFeedback()
 
             self.animateRefreshImage(progress: progress, parallaxScrollType: self.configuration.parallaxScrollType)
         } else {
-            self.isTriggeredRefresh = true
+            print("out of limit")
+            if self.startOffsetY < 0.0 {
+                self.isTriggeredRefresh = true
+            } else {
+                self.isTriggeredRefresh = false
+            }
             self.isHapticFeedbackEnabled = false
 
             self.animateRefreshImage(progress: 1.0, parallaxScrollType: self.configuration.parallaxScrollType)
 
-            self.upperScrollView.contentOffset = CGPoint(x: 0, y: self.upperScrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
-            self.lowerScrollView.contentOffset = CGPoint(x: 0, y: self.lowerScrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetY))
+            self.upperScrollView.contentOffset = CGPoint(x: 0, y: self.upperScrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetYUpper))
+            self.lowerScrollView.contentOffset = CGPoint(x: 0, y: self.lowerScrollView.contentOffset.y + (scrollView.contentOffset.y - self.preOffsetYUpper))
         }
 
-        self.preOffsetY = scrollView.contentOffset.y
+        self.preOffsetYUpper = scrollView.contentOffset.y
 
         if scrollView.contentOffset.y == 0 {
             self.initScroll()
@@ -98,6 +108,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
     }
 
     public func parallaxScrollViewDidEndDragging(releaseAction: (() -> Void)? = nil) {
+        self.startOffsetY = 0.0
         self.isHapticFeedbackEnabled = false
         
         self.animateRefreshImage(progress: 0.0, parallaxScrollType: self.configuration.parallaxScrollType)
