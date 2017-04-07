@@ -21,6 +21,7 @@ public protocol URParallaxScrollAnimatorMakable: class {
     var lowerImageView: UIImageView! { get set }
 
     var isTriggeredRefresh: Bool { get set }
+    var refreshAction: (() -> Void)? { get set }
 
     func makeParallaxScrollExtensionConfiguration(parallaxScrollRatio: CGFloat,
                                                   parallaxScrollType: URParallaxScrollAnimationType,

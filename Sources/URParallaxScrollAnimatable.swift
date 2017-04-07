@@ -29,22 +29,47 @@ extension URParallaxScrollAnimatable where Self: URParallaxScrollAnimatorMakable
         }
     }
 
-    public func animateRefreshImage(progress: CGFloat, parallaxScrollType: URParallaxScrollAnimationType) {
+    public func animateRefreshImage(progress: CGFloat = -1.0, parallaxScrollType: URParallaxScrollAnimationType) {
         switch parallaxScrollType {
         case .upperLayer:
             if self.upperLotAnimationView != nil {
-                self.upperLotAnimationView.animationProgress = progress
+                if progress < 0.0 {
+                    self.upperLotAnimationView.loopAnimation = true
+                    self.upperLotAnimationView.animationSpeed = 2.0
+                    self.upperLotAnimationView.play()
+                } else {
+                    self.upperLotAnimationView.animationProgress = progress
+                }
             }
         case .lowerLayer:
             if self.lowerLotAnimationView != nil {
-                self.lowerLotAnimationView.animationProgress = progress
+                if progress < 0.0 {
+                    self.lowerLotAnimationView.loopAnimation = true
+                    self.lowerLotAnimationView.animationSpeed = 2.0
+                    self.lowerLotAnimationView.play()
+                } else {
+                    self.lowerLotAnimationView.animationProgress = progress
+                }
             }
         default:
             if self.upperLotAnimationView != nil {
-                self.upperLotAnimationView.animationProgress = progress
+                if progress < 0.0 {
+                    self.upperLotAnimationView.loopAnimation = true
+                    self.upperLotAnimationView.animationSpeed = 2.0
+                    self.upperLotAnimationView.play()
+                } else {
+                    self.upperLotAnimationView.animationProgress = progress
+                }
             }
             if self.lowerLotAnimationView != nil {
-                self.lowerLotAnimationView.animationProgress = progress
+
+                if progress < 0.0 {
+                    self.lowerLotAnimationView.loopAnimation = true
+                    self.lowerLotAnimationView.animationSpeed = 2.0
+                    self.lowerLotAnimationView.play()
+                } else {
+                    self.lowerLotAnimationView.animationProgress = progress
+                }
             }
         }
     }

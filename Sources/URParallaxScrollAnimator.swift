@@ -85,8 +85,10 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
     public var startOffsetY: CGFloat = 0.0
     public var preOffsetYUpper: CGFloat = 0.0
     public var preOffsetYLower: CGFloat = 0.0
+    public var isGestureReleased: Bool = false
 
     public var isTriggeredRefresh: Bool = false
+    public var refreshAction: (() -> Void)?
 
     public var isHapticFeedbackEnabled: Bool = true
 

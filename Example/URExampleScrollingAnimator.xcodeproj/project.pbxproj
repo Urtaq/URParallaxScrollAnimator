@@ -21,6 +21,8 @@
 		9743C5C01E88A50E00F570ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9743C5BE1E88A50E00F570ED /* LaunchScreen.storyboard */; };
 		9743C5C81E88A61300F570ED /* URExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */; };
 		97D46CD81E94F31E002771E6 /* URExample2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D46CD71E94F31E002771E6 /* URExample2ViewController.swift */; };
+		97D944CB1E975E01005FB9AB /* Gear_pump_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 97D944CA1E975E01005FB9AB /* Gear_pump_animation.gif */; };
+		97D944CD1E975E1A005FB9AB /* 747-tailstrike.gif in Resources */ = {isa = PBXBuildFile; fileRef = 97D944CC1E975E1A005FB9AB /* 747-tailstrike.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		9743C5C11E88A50E00F570ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URExampleTableViewCell.swift; sourceTree = "<group>"; };
 		97D46CD71E94F31E002771E6 /* URExample2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URExample2ViewController.swift; sourceTree = "<group>"; };
+		97D944CA1E975E01005FB9AB /* Gear_pump_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Gear_pump_animation.gif; sourceTree = "<group>"; };
+		97D944CC1E975E1A005FB9AB /* 747-tailstrike.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "747-tailstrike.gif"; sourceTree = "<group>"; };
 		AEFFA942052901470CFD9F8B /* Pods_URExampleScrollingAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URExampleScrollingAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,6 +156,8 @@
 				97D46CD71E94F31E002771E6 /* URExample2ViewController.swift */,
 				9743C5B91E88A50E00F570ED /* Main.storyboard */,
 				9743C5BC1E88A50E00F570ED /* Assets.xcassets */,
+				97D944CA1E975E01005FB9AB /* Gear_pump_animation.gif */,
+				97D944CC1E975E1A005FB9AB /* 747-tailstrike.gif */,
 				9743C5BE1E88A50E00F570ED /* LaunchScreen.storyboard */,
 				9743C5C11E88A50E00F570ED /* Info.plist */,
 			);
@@ -263,10 +269,12 @@
 			files = (
 				971D9FD51E8D0AF3002BB42E /* img_0.png in Resources */,
 				971D9FD11E8D0AEA002BB42E /* data.json in Resources */,
+				97D944CB1E975E01005FB9AB /* Gear_pump_animation.gif in Resources */,
 				9743C5C01E88A50E00F570ED /* LaunchScreen.storyboard in Resources */,
 				9743C5BD1E88A50E00F570ED /* Assets.xcassets in Resources */,
 				9743C5BB1E88A50E00F570ED /* Main.storyboard in Resources */,
 				971D9FD71E8D0AF3002BB42E /* img_2.png in Resources */,
+				97D944CD1E975E1A005FB9AB /* 747-tailstrike.gif in Resources */,
 				971D9FD61E8D0AF3002BB42E /* img_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
