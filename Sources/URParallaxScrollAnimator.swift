@@ -80,6 +80,8 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
     public var preOffsetY: CGFloat = 0.0
     public var preOffsetY1: CGFloat = 0.0
 
+    public var isTriggeredRefresh: Bool = false
+
     public var isHapticFeedbackEnabled: Bool = true
 
     fileprivate init(_ base: UITableView) {

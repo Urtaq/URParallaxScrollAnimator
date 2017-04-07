@@ -20,6 +20,8 @@ public protocol URParallaxScrollAnimatorMakable: class {
     var lowerScrollView: UIScrollView! { get set }
     var lowerImageView: UIImageView! { get set }
 
+    var isTriggeredRefresh: Bool { get set }
+
     func makeParallaxScrollExtensionConfiguration(parallaxScrollRatio: CGFloat,
                                                   parallaxScrollType: URParallaxScrollAnimationType,
                                                   backgroundColor: UIColor,

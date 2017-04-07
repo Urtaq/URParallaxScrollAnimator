@@ -23,8 +23,8 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
     var girlTexts: [String] = ["Suzy in korean transitional dress", "Suzy during an interview", "Smiling Suzy", "Brightly Smiling Suzy", "SeolHyun wearing a swimming suit", "SeolHyun standing nicely", "SeolHyun carrying a cute bag", "SeolHyun laying down"]
 
-    var boyImages: [UIImage] = [#imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2")]
-    var boyTexts: [String] = ["KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere"]
+    var boyImages: [UIImage] = [#imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1")]
+    var boyTexts: [String] = ["KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +59,8 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
         self.lbParallexScrollRatioCurrent.text = "\(URParallaxScrollConfiguration.DefaultParallaxScrollRatio)"
 
         self.tableView.parallaxScrollExtension.configuration.parallaxScrollRatio = URParallaxScrollConfiguration.DefaultParallaxScrollRatio
+        self.tableView.parallaxScrollExtension.initScroll()
+        self.tableView.parallaxScrollExtension.parallaxScrollViewDidPullToRefresh()
     }
 
     @IBAction func tapInitRatio(_ sender: Any) {
@@ -102,6 +104,12 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.tableView.parallaxScrollExtension.parallaxScrollViewDidEndDragging()
+        self.tableView.parallaxScrollExtension.parallaxScrollViewDidEndDragging { 
+            let timer: Timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self] (_) in
+                print(#function)
+                guard let wself = self else { return }
+                wself.tableView.parallaxScrollExtension.parallaxScrollViewDidPullToRefresh()
+            })
+        }
     }
 }

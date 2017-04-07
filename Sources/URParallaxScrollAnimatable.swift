@@ -32,12 +32,20 @@ extension URParallaxScrollAnimatable where Self: URParallaxScrollAnimatorMakable
     public func animateRefreshImage(progress: CGFloat, parallaxScrollType: URParallaxScrollAnimationType) {
         switch parallaxScrollType {
         case .upperLayer:
-            self.upperLotAnimationView.animationProgress = progress
+            if self.upperLotAnimationView != nil {
+                self.upperLotAnimationView.animationProgress = progress
+            }
         case .lowerLayer:
-            self.lowerLotAnimationView.animationProgress = progress
+            if self.lowerLotAnimationView != nil {
+                self.lowerLotAnimationView.animationProgress = progress
+            }
         default:
-            self.upperLotAnimationView.animationProgress = progress
-            self.lowerLotAnimationView.animationProgress = progress
+            if self.upperLotAnimationView != nil {
+                self.upperLotAnimationView.animationProgress = progress
+            }
+            if self.lowerLotAnimationView != nil {
+                self.lowerLotAnimationView.animationProgress = progress
+            }
         }
     }
 }
