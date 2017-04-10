@@ -14,7 +14,10 @@ public protocol URParallaxScrollAnimatorMakable: class {
 
     var target: UITableView { get set }
 
+    var blankView: UIView! { get set }
+
     var upperScrollView: UIScrollView! { get set }
+    var upperScrollContentView: UIView! { get set }
     var upperImageView: UIImageView! { get set }
 
     var lowerScrollView: UIScrollView! { get set }
@@ -86,19 +89,53 @@ extension URParallaxScrollAnimatorMakable {
         switch position {
         case .upper:
             scrollView = self.upperScrollView
+
+            scrollView.layoutIfNeeded()
+            self.upperScrollContentView = UIView(frame: CGRect(origin: CGPoint.zero, size: scrollView.bounds.size))
+            self.upperScrollContentView.backgroundColor = UIColor.clear
+            scrollView.addSubview(self.upperScrollContentView)
+
+            self.upperScrollContentView.addSubview(contentView)
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+
+            self.upperScrollContentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[view]-0-|", options: [], metrics: nil, views: ["view" : contentView]))
+            self.upperScrollContentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]", options: [], metrics: nil, views: ["view" : contentView]))
+            contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.height, multiplier: size.width / size.height, constant: 0.0))
+
+            self.makeBlankView(container: self.upperScrollContentView, contentView: contentView)
         case .lower:
             scrollView = self.lowerScrollView
+
+            scrollView.addSubview(contentView)
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[view]-0-|", options: [], metrics: nil, views: ["view" : contentView]))
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [], metrics: nil, views: ["view" : contentView]))
+            scrollView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0.0))
+            contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.height, multiplier: size.width / size.height, constant: 0.0))
         default:
             break
         }
+    }
 
-        scrollView.addSubview(contentView)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+    /// make the blank area
+    public func makeBlankView(container: UIView, contentView: UIView) {
 
-        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[view]-0-|", options: [], metrics: nil, views: ["view" : contentView]))
-        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [], metrics: nil, views: ["view" : contentView]))
-        scrollView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0.0))
-        contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.height, multiplier: size.width / size.height, constant: 0.0))
+        if self.blankView == nil {
+            self.blankView = UIView()
+            self.blankView.backgroundColor = UIColor.white
+            container.addSubview(self.blankView)
+
+            self.blankView.translatesAutoresizingMaskIntoConstraints = false
+            container.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[blank]-0-|", options: [], metrics: nil, views: ["blank" : self.blankView]))
+            container.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[content]-0-[blank]-0-|", options: [], metrics: nil, views: ["content" : contentView, "blank": self.blankView]))
+        } else {
+            self.blankView.isHidden = false
+        }
+    }
+
+    public func hideBlankView() {
+        self.blankView.isHidden = true
     }
 
     public func makeParallaxScrollExtensionConfiguration(parallaxScrollRatio: CGFloat = URParallaxScrollConfiguration.DefaultParallaxScrollRatio,

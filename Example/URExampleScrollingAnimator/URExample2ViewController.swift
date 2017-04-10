@@ -51,7 +51,7 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
 
         self.tableView.parallaxScrollExtension.makeParallaxScrollExtensionConfiguration(upperImage: #imageLiteral(resourceName: "누끼설현_01re"), lowerImage: nil, lowerLottieData: "data")
         self.tableView.parallaxScrollExtension.refreshAction = {
-            let indicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+            let indicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
             let backView: UIView = UIView(frame: self.tableView.frame)
             backView.addSubview(indicatorView)
             indicatorView.center = backView.center

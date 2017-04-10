@@ -70,8 +70,11 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
 
     public var target: UITableView
 
+    public var blankView: UIView!
+
     public var upperScrollView: UIScrollView!
     public var upperImageView: UIImageView!
+    public var upperScrollContentView: UIView!
 
     public var upperLotAnimationView: LOTAnimationView!
 

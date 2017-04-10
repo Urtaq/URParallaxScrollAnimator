@@ -64,7 +64,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
 //        let scrollDirection: URParallaxScrollVerticalDirection = (self.preOffsetYUpper > scrollView.contentOffset.y && scrollView.contentOffset.y < 0) ? .down : .up
 
-        let scrollRatio: CGFloat = self.upperScrollView.contentSize.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
+        let scrollRatio: CGFloat = self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
@@ -127,7 +127,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         
         self.animateRefreshImage(progress: 0.0, parallaxScrollType: self.configuration.parallaxScrollType)
 
-        let scrollRatio: CGFloat = self.upperScrollView.contentSize.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
+        let scrollRatio: CGFloat = self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
         if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
             self.isTriggeredRefresh = false
