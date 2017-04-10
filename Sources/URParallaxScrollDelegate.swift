@@ -62,24 +62,22 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 //        let scrollDirection: URParallaxScrollVerticalDirection = (self.preOffsetYUpper > scrollView.contentOffset.y && scrollView.contentOffset.y < 0) ? .down : .up
 
         let scrollRatio: CGFloat = self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
-//        let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
         let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height / (1 - self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio)
 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
         if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
-            print("in limit")
             var animationProgress: CGFloat = progress
             if self.isTriggeredRefresh && self.isGestureReleased && self.startOffsetY <= 0 {
                 // prevent to be back...
-//                scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: true)
                 scrollView.setContentOffset(CGPoint(x: 0, y: limitImageScrollOffsetY * -1), animated: true)
 
                 if scrollView.contentInset.top == 0 {
                     scrollView.contentInset.top = limitImageScrollOffsetY
 
-                    print("pull to refresh action is started!!")
                     guard let release = self.refreshAction else { return }
                     DispatchQueue.main.async(execute: release)
+
+                    self.isTriggeredRefresh = false
                 }
 
                 animationProgress = -1.0
@@ -92,7 +90,6 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
             self.animateRefreshImage(progress: animationProgress, parallaxScrollType: self.configuration.parallaxScrollType)
         } else {
-            print("out of limit")
             self.isHapticFeedbackEnabled = false
 
             var animationProgress: CGFloat = 1.0
@@ -141,8 +138,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
     }
 
     public func parallaxScrollViewDidPullToRefresh() {
-        if self.isTriggeredRefresh {
-            self.isTriggeredRefresh = false
+        if self.target.contentInset.top != 0 {
             let insetTop: CGFloat = self.target.contentInset.top
             self.target.contentInset.top = 0
             self.target.setContentOffset(CGPoint(x: 0, y: insetTop * -1), animated: false)
