@@ -152,7 +152,6 @@ extension URParallaxScrollAnimatorMakable {
     }
 
     public func initParallaxScrollViews() {
-        self.target.backgroundColor = UIColor.clear
         self.configuration = self.target.parallaxScrollExtension.configuration
 
         if let image = self.target.parallaxScrollExtension.configuration.upperImage {

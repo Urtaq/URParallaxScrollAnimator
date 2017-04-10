@@ -55,6 +55,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
     }
 
     public func parallaxScrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("scrollView contentOffset Y is \(scrollView.contentOffset.y)")
         if self.startOffsetY == 0.0 && scrollView.contentOffset.y > 0 {
             self.startOffsetY = scrollView.contentOffset.y
         }
@@ -66,9 +67,11 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
         if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
+            print("in limit \(limitImageScrollOffsetY)")
             var animationProgress: CGFloat = progress
             if self.isPullToRefreshEnabled {
                 if self.isTriggeredRefresh && self.isGestureReleased && self.startOffsetY <= 0 {
+                    print("in limit - refresh")
                     // prevent to be back...
                     scrollView.setContentOffset(CGPoint(x: 0, y: limitImageScrollOffsetY * -1), animated: false)
 
@@ -90,11 +93,13 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
             self.animateRefreshImage(progress: animationProgress, parallaxScrollType: self.configuration.parallaxScrollType)
         } else {
+            print("out of limit")
             self.isHapticFeedbackEnabled = false
 
             var animationProgress: CGFloat = 1.0
             if self.isPullToRefreshEnabled {
                 if self.isTriggeredRefresh && self.isGestureReleased {
+                    print("out of limit - refresh")
                     animationProgress = -1.0
                 }
             }
@@ -117,6 +122,8 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
         self.isHapticFeedbackEnabled = true
         self.isGestureReleased = false
+
+        scrollView.backgroundColor = UIColor.clear
 
         if scrollView.contentOffset.y == 0 {
             self.initScroll()
