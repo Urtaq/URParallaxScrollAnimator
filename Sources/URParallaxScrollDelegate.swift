@@ -70,15 +70,13 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
             if self.isPullToRefreshEnabled {
                 if self.isTriggeredRefresh && self.isGestureReleased && self.startOffsetY <= 0 {
                     // prevent to be back...
-                    scrollView.setContentOffset(CGPoint(x: 0, y: limitImageScrollOffsetY * -1), animated: true)
+                    scrollView.setContentOffset(CGPoint(x: 0, y: limitImageScrollOffsetY * -1), animated: false)
 
                     if scrollView.contentInset.top == 0 {
                         scrollView.contentInset.top = limitImageScrollOffsetY
 
                         guard let release = self.refreshAction else { return }
                         DispatchQueue.main.async(execute: release)
-
-                        self.isTriggeredRefresh = false
                     }
                     
                     animationProgress = -1.0
@@ -144,11 +142,14 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
     public func parallaxScrollViewDidPullToRefresh() {
         if self.isPullToRefreshEnabled {
-            if self.target.contentInset.top != 0 {
-                let insetTop: CGFloat = self.target.contentInset.top
-                self.target.contentInset.top = 0
-                self.target.setContentOffset(CGPoint(x: 0, y: insetTop * -1), animated: false)
-                self.target.setContentOffset(CGPoint.zero, animated: true)
+            if self.isTriggeredRefresh {
+                self.isTriggeredRefresh = false
+                if self.target.contentInset.top != 0 {
+                    let insetTop: CGFloat = self.target.contentInset.top
+                    self.target.contentInset.top = 0
+                    self.target.setContentOffset(CGPoint(x: 0, y: insetTop * -1), animated: false)
+                    self.target.setContentOffset(CGPoint.zero, animated: true)
+                }
             }
         }
     }
