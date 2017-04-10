@@ -91,7 +91,12 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
     public var isGestureReleased: Bool = false
 
     public var isTriggeredRefresh: Bool = false
-    public var refreshAction: (() -> Void)?
+    public var isPullToRefreshEnabled: Bool = false
+    public var refreshAction: (() -> Void)? {
+        didSet {
+            self.isPullToRefreshEnabled = (self.refreshAction != nil)
+        }
+    }
 
     public var isHapticFeedbackEnabled: Bool = true
 

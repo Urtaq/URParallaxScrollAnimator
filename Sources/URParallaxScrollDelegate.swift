@@ -67,20 +67,22 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
         if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
             var animationProgress: CGFloat = progress
-            if self.isTriggeredRefresh && self.isGestureReleased && self.startOffsetY <= 0 {
-                // prevent to be back...
-                scrollView.setContentOffset(CGPoint(x: 0, y: limitImageScrollOffsetY * -1), animated: true)
+            if self.isPullToRefreshEnabled {
+                if self.isTriggeredRefresh && self.isGestureReleased && self.startOffsetY <= 0 {
+                    // prevent to be back...
+                    scrollView.setContentOffset(CGPoint(x: 0, y: limitImageScrollOffsetY * -1), animated: true)
 
-                if scrollView.contentInset.top == 0 {
-                    scrollView.contentInset.top = limitImageScrollOffsetY
+                    if scrollView.contentInset.top == 0 {
+                        scrollView.contentInset.top = limitImageScrollOffsetY
 
-                    guard let release = self.refreshAction else { return }
-                    DispatchQueue.main.async(execute: release)
+                        guard let release = self.refreshAction else { return }
+                        DispatchQueue.main.async(execute: release)
 
-                    self.isTriggeredRefresh = false
+                        self.isTriggeredRefresh = false
+                    }
+                    
+                    animationProgress = -1.0
                 }
-
-                animationProgress = -1.0
             }
 
             self.upperScrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y * scrollRatio)
@@ -93,8 +95,10 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
             self.isHapticFeedbackEnabled = false
 
             var animationProgress: CGFloat = 1.0
-            if self.isTriggeredRefresh && self.isGestureReleased {
-                animationProgress = -1.0
+            if self.isPullToRefreshEnabled {
+                if self.isTriggeredRefresh && self.isGestureReleased {
+                    animationProgress = -1.0
+                }
             }
 
             self.animateRefreshImage(progress: animationProgress, parallaxScrollType: self.configuration.parallaxScrollType)
@@ -128,21 +132,24 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         
         self.animateRefreshImage(progress: 0.0, parallaxScrollType: self.configuration.parallaxScrollType)
 
-        let scrollRatio: CGFloat = self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
-        let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height + abs(scrollView.contentOffset.y * scrollRatio)
-        if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
-            self.isTriggeredRefresh = false
-        } else {
-            self.isTriggeredRefresh = true
+        if self.isPullToRefreshEnabled {
+            let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height / (1 - self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio)
+            if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
+                self.isTriggeredRefresh = false
+            } else {
+                self.isTriggeredRefresh = true
+            }
         }
     }
 
     public func parallaxScrollViewDidPullToRefresh() {
-        if self.target.contentInset.top != 0 {
-            let insetTop: CGFloat = self.target.contentInset.top
-            self.target.contentInset.top = 0
-            self.target.setContentOffset(CGPoint(x: 0, y: insetTop * -1), animated: false)
-            self.target.setContentOffset(CGPoint.zero, animated: true)
+        if self.isPullToRefreshEnabled {
+            if self.target.contentInset.top != 0 {
+                let insetTop: CGFloat = self.target.contentInset.top
+                self.target.contentInset.top = 0
+                self.target.setContentOffset(CGPoint(x: 0, y: insetTop * -1), animated: false)
+                self.target.setContentOffset(CGPoint.zero, animated: true)
+            }
         }
     }
 }

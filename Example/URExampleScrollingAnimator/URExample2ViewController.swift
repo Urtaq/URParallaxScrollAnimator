@@ -20,11 +20,13 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet var btnInitRatio: UIButton!
 
+    @IBOutlet var swEnablePullToRefresh: UISwitch!
+
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
     var girlTexts: [String] = ["Suzy in korean transitional dress", "Suzy during an interview", "Smiling Suzy", "Brightly Smiling Suzy", "SeolHyun wearing a swimming suit", "SeolHyun standing nicely", "SeolHyun carrying a cute bag", "SeolHyun laying down"]
 
-    var boyImages: [UIImage] = [#imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1"), #imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1"), #imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1"), #imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1")]
-    var boyTexts: [String] = ["KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling", "KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling", "KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling", "KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling"]
+    var boyImages: [UIImage] = [#imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1")]//, #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1"), #imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1"), #imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1"), #imageLiteral(resourceName: "seokangjun1"), #imageLiteral(resourceName: "seokangjun2"), #imageLiteral(resourceName: "joinsung1"), #imageLiteral(resourceName: "joinsung2"), #imageLiteral(resourceName: "joinsung3"), #imageLiteral(resourceName: "gosu1"), #imageLiteral(resourceName: "gosu2"), #imageLiteral(resourceName: "jungwoosung1"), #imageLiteral(resourceName: "jungwoosung2"), #imageLiteral(resourceName: "jongsuk1")]
+    var boyTexts: [String] = ["KangJun with 'V'", "KangJun in suit", "InSung's face at the left side"]//, "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling", "KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling", "KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling", "KangJun with 'V'", "KangJun in suit", "InSung's face at the left side", "InSung is looking at me", "Dandy InSung", "GoSu", "GoSu with scarf", "WooSung in suit", "WooSung is looking at somewhere", "JongSuk is smiling"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +62,6 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
             indicatorView.startAnimating()
 
             let timer: Timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] (_) in
-                print(#function)
                 guard let wself = self else { return }
                 wself.tableView.parallaxScrollExtension.parallaxScrollViewDidPullToRefresh()
                 backView.removeFromSuperview()
@@ -68,6 +69,7 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
 
             RunLoop.main.add(timer, forMode: .commonModes)
         }
+        self.tableView.parallaxScrollExtension.isPullToRefreshEnabled = self.swEnablePullToRefresh.isOn
 
         self.initValues()
     }
@@ -91,6 +93,10 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
         self.lbParallexScrollRatioCurrent.text = "\(value)"
 
         self.tableView.parallaxScrollExtension.configuration.parallaxScrollRatio = CGFloat(value)
+    }
+
+    @IBAction func switchEnablePullToRefresh(_ sender: Any) {
+        self.tableView.parallaxScrollExtension.isPullToRefreshEnabled = self.swEnablePullToRefresh.isOn
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
