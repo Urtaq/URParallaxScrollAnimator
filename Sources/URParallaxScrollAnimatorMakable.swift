@@ -13,6 +13,7 @@ public protocol URParallaxScrollAnimatorMakable: class {
     var configuration: URParallaxScrollConfiguration! { get set }
 
     var target: UITableView { get set }
+    var targetBackgroundColor: UIColor? { get set }
 
     var blankView: UIView! { get set }
 
@@ -62,7 +63,7 @@ extension URParallaxScrollAnimatorMakable {
 
         let lowerScrollMaker: () -> Void = {
             self.lowerScrollView = UIScrollView(frame: self.target.frame)
-            self.lowerScrollView.backgroundColor = self.target.parallaxScrollExtension.configuration.backgroundColor
+            self.lowerScrollView.backgroundColor = self.configuration.backgroundColor
             superview.insertSubview(self.lowerScrollView, belowSubview: self.upperScrollView)
 
             self.lowerScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -146,15 +147,14 @@ extension URParallaxScrollAnimatorMakable {
                                                          lowerImage: UIImage!,
                                                          upperLottieData: String! = nil,
                                                          lowerLottieData: String! = nil) {
-        self.target.parallaxScrollExtension.configuration = URParallaxScrollConfiguration(parallaxScrollRatio: parallaxScrollRatio, parallaxScrollType: parallaxScrollType, backgroundColor: backgroundColor, upperImage: upperImage, lowerImage: lowerImage, upperLottieData: upperLottieData, lowerLottieData: lowerLottieData)
+        self.configuration = URParallaxScrollConfiguration(parallaxScrollRatio: parallaxScrollRatio, parallaxScrollType: parallaxScrollType, backgroundColor: backgroundColor, upperImage: upperImage, lowerImage: lowerImage, upperLottieData: upperLottieData, lowerLottieData: lowerLottieData)
+        self.targetBackgroundColor = self.target.backgroundColor
 
         self.initParallaxScrollViews()
     }
 
     public func initParallaxScrollViews() {
-        self.configuration = self.target.parallaxScrollExtension.configuration
-
-        if let image = self.target.parallaxScrollExtension.configuration.upperImage {
+        if let image = self.configuration.upperImage {
 
             self.configScrollView(position: .upper)
 
@@ -162,7 +162,7 @@ extension URParallaxScrollAnimatorMakable {
             self.configScrollContentView(position: .upper, contentView: self.upperImageView, size: image.size)
         }
 
-        if let image = self.target.parallaxScrollExtension.configuration.lowerImage {
+        if let image = self.configuration.lowerImage {
 
             self.configScrollView(position: .lower)
 
@@ -177,7 +177,7 @@ extension URParallaxScrollAnimatorMakable {
 extension URParallaxScrollAnimatorMakable where Self: URParallaxScrollAnimatable {
     
     public func initAnimatableParallaxScrollViews() {
-        if let data = self.target.parallaxScrollExtension.configuration.upperLottieData {
+        if let data = self.configuration.upperLottieData {
 
             self.configScrollView(position: .upper)
 
@@ -185,7 +185,7 @@ extension URParallaxScrollAnimatorMakable where Self: URParallaxScrollAnimatable
             self.configScrollContentView(position: .upper, contentView: self.upperLotAnimationView, size: self.upperLotAnimationView.bounds.size)
         }
 
-        if let data = self.target.parallaxScrollExtension.configuration.lowerLottieData {
+        if let data = self.configuration.lowerLottieData {
 
             self.configScrollView(position: .lower)
 

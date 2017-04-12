@@ -69,6 +69,7 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
     public var configuration: URParallaxScrollConfiguration!
 
     public var target: UITableView
+    public var targetBackgroundColor: UIColor?
 
     public var blankView: UIView!
 
@@ -98,6 +99,7 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
         }
     }
 
+    public var hapticFeedbackGenerator: NSObject?
     public var isHapticFeedbackEnabled: Bool = true
 
     fileprivate init(_ base: UITableView) {

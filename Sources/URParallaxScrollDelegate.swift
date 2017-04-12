@@ -20,6 +20,8 @@ public protocol URParallaxScrollDelegate: class {
 
     var isHapticFeedbackEnabled: Bool { get set }
 
+    @available(iOS 10.0, *)
+    var hapticFeedbackGenerator: NSObject? { get set }
     func generateHapticFeedback()
 
     func parallaxScrollViewDidScroll(_ scrollView: UIScrollView)
@@ -45,11 +47,17 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         self.isHapticFeedbackEnabled = true
     }
 
+    public func prepareHapticFeedback() {
+        if #available(iOS 10.0, *) {
+            self.hapticFeedbackGenerator = UISelectionFeedbackGenerator()
+            (self.hapticFeedbackGenerator as? UISelectionFeedbackGenerator)?.prepare()
+        }
+    }
+
     public func generateHapticFeedback() {
         if self.isHapticFeedbackEnabled {
             if #available(iOS 10.0, *) {
-                let generator = UISelectionFeedbackGenerator()
-                generator.selectionChanged()
+                (self.hapticFeedbackGenerator as? UISelectionFeedbackGenerator)?.selectionChanged()
             }
         }
     }
@@ -116,6 +124,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         self.startOffsetY = 0.0
 
         self.isHapticFeedbackEnabled = true
+        self.prepareHapticFeedback()
         self.isGestureReleased = false
 
         scrollView.backgroundColor = UIColor.clear
@@ -128,6 +137,9 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
     public func parallaxScrollViewDidEndDragging(_ scrollView: UIScrollView) {
         self.startOffsetY = 0.0
         self.isHapticFeedbackEnabled = false
+        if #available(iOS 10.0, *) {
+            self.hapticFeedbackGenerator = nil
+        }
         self.isGestureReleased = true
         
         self.animateRefreshImage(progress: 0.0, parallaxScrollType: self.configuration.parallaxScrollType)
