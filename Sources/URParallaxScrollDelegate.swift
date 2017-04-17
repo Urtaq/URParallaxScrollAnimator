@@ -30,6 +30,8 @@ public protocol URParallaxScrollDelegate: class {
 
     func parallaxScrollViewDidEndDragging(_ scrollView: UIScrollView)
 
+    func parallaxScrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
+
     /// must call, just after the pull to refresh is finished
     func parallaxScrollViewDidPullToRefresh()
 }
@@ -38,7 +40,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
 
     public func initScroll() {
         // init values
-        self.configuration.parallaxScrollRatio = self.configuration.parallaxScrollRatio
+
         // init scroll position
         self.preOffsetYLower = (-self.upperImageView.bounds.height) * self.configuration.parallaxScrollRatio / URParallaxScrollConfiguration.DefaultParallaxScrollRatio
         self.lowerScrollView.contentOffset = CGPoint(x: self.lowerScrollView.contentOffset.x, y: self.preOffsetYLower)
@@ -151,6 +153,12 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
             } else {
                 self.isTriggeredRefresh = true
             }
+        }
+    }
+
+    public func parallaxScrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y == 0 {
+            self.target.backgroundColor = self.targetBackgroundColor
         }
     }
 
