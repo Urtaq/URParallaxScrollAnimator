@@ -28,7 +28,7 @@ public enum URParallaxScrollVerticalDirection {
 
 public struct URParallaxScrollConfiguration {
     public static let DefaultParallaxScrollRatio: CGFloat = 1.38
-    public static let DefaultBackgroundColor: UIColor = UIColor(red: 1.0, green: 0xae / 0xff, blue: 0.0, alpha: 1.0)
+    public static let DefaultBackgroundColor: UIColor = UIColor(red: 1.0, green: CGFloat(0xae) / CGFloat(0xff), blue: 0.0, alpha: 1.0)
 
     public var parallaxScrollRatio: CGFloat = URParallaxScrollConfiguration.DefaultParallaxScrollRatio
 
@@ -46,6 +46,9 @@ public struct URParallaxScrollConfiguration {
 
     var upperLottieData: String!
     var lowerLottieData: String!
+
+    public var isEnabledPullToRefresh: Bool = false
+    public var isEnabledHapticFeedback: Bool = true
 
     init(parallaxScrollRatio: CGFloat = URParallaxScrollConfiguration.DefaultParallaxScrollRatio, parallaxScrollType: URParallaxScrollAnimationType = .lowerLayer, backgroundColor: UIColor = DefaultBackgroundColor, upperImage: UIImage!, lowerImage: UIImage!, upperLottieData: String! = nil, lowerLottieData: String! = nil) {
         self.parallaxScrollRatio = parallaxScrollRatio
@@ -92,15 +95,14 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
     public var isGestureReleased: Bool = false
 
     public var isTriggeredRefresh: Bool = false
-    public var isPullToRefreshEnabled: Bool = false
     public var refreshAction: (() -> Void)? {
         didSet {
-            self.isPullToRefreshEnabled = (self.refreshAction != nil)
+            self.configuration.isEnabledPullToRefresh = (self.refreshAction != nil)
         }
     }
 
     public var hapticFeedbackGenerator: NSObject?
-    public var isHapticFeedbackEnabled: Bool = true
+    public var needHapticFeedback: Bool = true
 
     fileprivate init(_ base: UITableView) {
         self.target = base

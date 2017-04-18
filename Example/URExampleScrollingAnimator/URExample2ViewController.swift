@@ -20,6 +20,7 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet var btnInitRatio: UIButton!
 
+    @IBOutlet var swEnableHapticFeedback: UISwitch!
     @IBOutlet var swEnablePullToRefresh: UISwitch!
 
     var girlImages: [UIImage] = [#imageLiteral(resourceName: "suzy1"), #imageLiteral(resourceName: "suzy2"), #imageLiteral(resourceName: "suzy3"), #imageLiteral(resourceName: "suzy4"), #imageLiteral(resourceName: "seolhyun1"), #imageLiteral(resourceName: "seolhyun2"), #imageLiteral(resourceName: "seolhyun3"), #imageLiteral(resourceName: "seolhyun4")]
@@ -69,7 +70,7 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
 
             RunLoop.main.add(timer, forMode: .commonModes)
         }
-        self.tableView.parallaxScrollExtension.isPullToRefreshEnabled = self.swEnablePullToRefresh.isOn
+        self.tableView.parallaxScrollExtension.configuration.isEnabledPullToRefresh = self.swEnablePullToRefresh.isOn
 
         self.initValues()
     }
@@ -95,8 +96,12 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.parallaxScrollExtension.configuration.parallaxScrollRatio = CGFloat(value)
     }
 
+    @IBAction func switchEnableHapticFeedback(_ sender: Any) {
+        self.tableView.parallaxScrollExtension.configuration.isEnabledHapticFeedback = self.swEnableHapticFeedback.isOn
+    }
+
     @IBAction func switchEnablePullToRefresh(_ sender: Any) {
-        self.tableView.parallaxScrollExtension.isPullToRefreshEnabled = self.swEnablePullToRefresh.isOn
+        self.tableView.parallaxScrollExtension.configuration.isEnabledPullToRefresh = self.swEnablePullToRefresh.isOn
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
