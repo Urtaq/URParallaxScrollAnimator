@@ -15,7 +15,6 @@
 		971D9FD71E8D0AF3002BB42E /* img_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 971D9FD41E8D0AF3002BB42E /* img_2.png */; };
 		973B79531E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B79521E89F9FD0097A9F1 /* URExampleScrollingAnimatorUITests.swift */; };
 		9743C5B61E88A50E00F570ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B51E88A50E00F570ED /* AppDelegate.swift */; };
-		9743C5B81E88A50E00F570ED /* URExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743C5B71E88A50E00F570ED /* URExampleViewController.swift */; };
 		9743C5BB1E88A50E00F570ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9743C5B91E88A50E00F570ED /* Main.storyboard */; };
 		9743C5BD1E88A50E00F570ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9743C5BC1E88A50E00F570ED /* Assets.xcassets */; };
 		9743C5C01E88A50E00F570ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9743C5BE1E88A50E00F570ED /* LaunchScreen.storyboard */; };
@@ -48,7 +47,6 @@
 		973B79541E89F9FD0097A9F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9743C5B21E88A50E00F570ED /* URExampleScrollingAnimator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URExampleScrollingAnimator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9743C5B51E88A50E00F570ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9743C5B71E88A50E00F570ED /* URExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URExampleViewController.swift; sourceTree = "<group>"; };
 		9743C5BA1E88A50E00F570ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9743C5BC1E88A50E00F570ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9743C5BF1E88A50E00F570ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			children = (
 				971D9FC61E8D01E6002BB42E /* animationAssets */,
 				9743C5B51E88A50E00F570ED /* AppDelegate.swift */,
-				9743C5B71E88A50E00F570ED /* URExampleViewController.swift */,
 				9743C5C71E88A61300F570ED /* URExampleTableViewCell.swift */,
 				971D9FBA1E8CE54D002BB42E /* URExampleDetailViewController.swift */,
 				97D46CD71E94F31E002771E6 /* URExample2ViewController.swift */,
@@ -343,7 +340,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9743C5C81E88A61300F570ED /* URExampleTableViewCell.swift in Sources */,
-				9743C5B81E88A50E00F570ED /* URExampleViewController.swift in Sources */,
 				9743C5B61E88A50E00F570ED /* AppDelegate.swift in Sources */,
 				971D9FBB1E8CE54D002BB42E /* URExampleDetailViewController.swift in Sources */,
 				97D46CD81E94F31E002771E6 /* URExample2ViewController.swift in Sources */,
