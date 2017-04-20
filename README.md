@@ -52,6 +52,7 @@ import URMovingTransitionAnimator
 ```
 
 ##### 1.1. How to use Lottie
+* You can find the detail Lottie usage guide at the [Lottie-iOS](https://github.com/airbnb/lottie-ios)
 * add the lottie files in the project, and then just use the json file name to load the Lottie View
 ![sample](https://github.com/jegumhon/URParallaxScrollAnimator/blob/master/Resources/project_setting.png?raw=true)
 
