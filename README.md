@@ -10,6 +10,9 @@ This extends the scrollView to make the parallax scrolling feature on the Run ti
 
 To show the animation as scrolling, [Lottie](http://airbnb.design/lottie/) is used.
 
+In addition to, you can provide the funny factor, [Haptic feedback](https://developer.apple.com/ios/human-interface-guidelines/interaction/feedback/).  
+The haptic feedback is provided by scrolling down.(But only for iOS 10)
+
 ![sample](https://github.com/jegumhon/URParallaxScrollAnimator/blob/master/Resources/parallaxScrolling+PullToRefresh1.gif?raw=true)
 
 ## Requirements
@@ -87,7 +90,7 @@ import URMovingTransitionAnimator
 #### 4. 😀 Configurable parameters of URParallaxScrollAnimator 😀
 * **parallaxScrollRatio** : parallax ratio between the target scroll view and upper parallax view and lower parallax view.
 * **backgroundColor** : parallax scrollView's background color.
-* **isEnabledHapticFeedback** : enable the [Haptic feedback](https://developer.apple.com/ios/human-interface-guidelines/interaction/feedback/). Default is "true".(but this feature is only for iOS 10)
+* **isEnabledHapticFeedback** : enable the [Haptic feedback](https://developer.apple.com/ios/human-interface-guidelines/interaction/feedback/). Default is "true".(but this feature is only for **iOS 10**)
 * **isEnabledPullToRefresh** : enable the Pull to refresh. Default is "false".
 * **refreshAction** : callback to handle the Pull to refresh.(If you set this, "isEnabledPullToRefresh" is set automatically "true")
 
