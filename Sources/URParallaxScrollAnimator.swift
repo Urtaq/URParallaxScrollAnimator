@@ -27,7 +27,7 @@ public enum URParallaxScrollVerticalDirection {
 }
 
 public struct URParallaxScrollConfiguration {
-    public static let DefaultParallaxScrollRatio: CGFloat = 1.38
+    public static let DefaultParallaxScrollRatio: CGFloat = 1.0
     public static let DefaultBackgroundColor: UIColor = UIColor(red: 1.0, green: CGFloat(0xae) / CGFloat(0xff), blue: 0.0, alpha: 1.0)
 
     public var parallaxScrollRatio: CGFloat = URParallaxScrollConfiguration.DefaultParallaxScrollRatio
@@ -71,7 +71,7 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
 
     public var configuration: URParallaxScrollConfiguration!
 
-    public var target: UITableView
+    public var target: UIScrollView
     public var targetBackgroundColor: UIColor?
 
     public var blankView: UIView!
@@ -104,7 +104,7 @@ public class URParallaxScrollExtension: NSObject, URParallaxScrollAnimatorMakabl
     public var hapticFeedbackGenerator: NSObject?
     public var needHapticFeedback: Bool = true
 
-    fileprivate init(_ base: UITableView) {
+    fileprivate init(_ base: UIScrollView) {
         self.target = base
         super.init()
 
@@ -118,7 +118,7 @@ struct AssociatedKey {
     static var extensionAddress: UInt8 = 0
 }
 
-extension UITableView {
+extension UIScrollView {
 
     public var parallaxScrollExtension: URParallaxScrollExtension {
         guard let parallaxScrollEx = objc_getAssociatedObject(self, &AssociatedKey.extensionAddress) as? URParallaxScrollExtension else {

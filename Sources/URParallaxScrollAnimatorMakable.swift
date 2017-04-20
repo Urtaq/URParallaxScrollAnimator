@@ -12,7 +12,7 @@ import Lottie
 public protocol URParallaxScrollAnimatorMakable: class {
     var configuration: URParallaxScrollConfiguration! { get set }
 
-    var target: UITableView { get set }
+    var target: UIScrollView { get set }
     var targetBackgroundColor: UIColor? { get set }
 
     var blankView: UIView! { get set }
