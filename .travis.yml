@@ -13,6 +13,6 @@ before_install:
   - pod repo update > /dev/null
   - pod install --project-directory=Example
 script:
-  - xcodebuild -scheme URExampleParallaxScrollAnimator -workspace Example/URExampleScrollingAnimator.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=latest,name=iPhone 7' build test
+  - xcodebuild -scheme URExampleScrollAnimator -workspace Example/URExampleScrollingAnimator.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=latest,name=iPhone 7' build test
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
