@@ -13,6 +13,7 @@ before_install:
   - pod repo update > /dev/null
   - cd ./Example
   - pod install
+  - ls -al
 script:
   - xcodebuild -scheme URExampleScrollingAnimator -workspace URExampleScrollingAnimator.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=latest,name=iPhone 7' build test
 after_success:
