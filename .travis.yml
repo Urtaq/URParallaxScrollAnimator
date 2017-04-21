@@ -1,0 +1,18 @@
+language: swift
+osx_image: xcode8.3
+env:
+  global:
+   - LANG=en_US.UTF-8
+  matrix:
+   - PLATFORM="iOS"
+before_install:
+  - rvm use system
+  - sudo gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - sudo gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - pod --version
+  - pod repo update > /dev/null
+  - pod install --project-directory=Example
+script:
+  - xcodebuild -scheme URExampleMovingTransition -workspace URParallaxScrollAnimator.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=latest,name=iPhone 7' build test
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -cF ios
