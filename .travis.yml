@@ -11,8 +11,9 @@ before_install:
   - sudo gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - pod --version
   - pod repo update > /dev/null
-  - pod install --project-directory=Example
+  - cd ./Example
+  - pod install
 script:
-  - xcodebuild -scheme URExampleScrollingAnimator -workspace Example/URExampleScrollingAnimator.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=latest,name=iPhone 7' build test
+  - xcodebuild -scheme URExampleScrollingAnimator -workspace URExampleScrollingAnimator.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=latest,name=iPhone 7' build test
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
