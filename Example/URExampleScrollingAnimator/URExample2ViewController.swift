@@ -52,7 +52,7 @@ class URExample2ViewController: UIViewController, UITableViewDelegate, UITableVi
         self.lbParallexScrollRatioMax.text = "\(self.slParallexScrollRatio.maximumValue)"
         self.lbParallexScrollRatioCurrent.text = "\(self.slParallexScrollRatio.value)"
 
-        self.tableView.parallaxScrollExtension.makeParallaxScrollExtensionConfiguration(upperImage: #imageLiteral(resourceName: "cloud_by_ur2"), lowerImage: #imageLiteral(resourceName: "mountain_by_ur2"), lowerLottieData: nil)
+        self.tableView.parallaxScrollExtension.makeParallaxScrollExtensionConfiguration(upperImage: #imageLiteral(resourceName: "cloud_by_ur2"), lowerImage: nil, lowerLottieData: "data")
         self.tableView.parallaxScrollExtension.refreshAction = {
             let indicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
             let backView: UIView = UIView(frame: self.tableView.frame)
