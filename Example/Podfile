@@ -6,7 +6,6 @@ target 'URExampleScrollingAnimator' do
   use_frameworks!
 
   # Pods for URExampleScrollingAnimator
-  pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'URParallaxScrollAnimator', :path => '../'
   pod 'lottie-ios'
   pod 'YLGIFImage'
