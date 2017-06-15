@@ -40,7 +40,7 @@ Run `pod install` and open the .xcworkspace file.
 ## Usage
 
 ```swift
-import URMovingTransitionAnimator
+import URParallaxScrollAnimator
 ```
 
 #### 1. Set the Parallax Scroll maker
