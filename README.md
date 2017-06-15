@@ -8,7 +8,7 @@ This code style is the **`Protocol Oriented Programming`**.
 So some protocols are configured to implement the parallax scrolling.  
 This extends the scrollView to make the parallax scrolling feature on the Run time, using objc_getAssociatedObject.
 
-To show the animation as scrolling, [Lottie](http://airbnb.design/lottie/) is used.
+To show the animation as scrolling, [Lottie](http://airbnb.design/lottie/) is able to be used instead of normale UIImageView.
 
 In addition to, you can provide the funny factor, [Haptic feedback](https://developer.apple.com/ios/human-interface-guidelines/interaction/feedback/).  
 The haptic feedback is provided by scrolling down.(But only for iOS 10)
