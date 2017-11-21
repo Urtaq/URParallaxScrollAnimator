@@ -173,6 +173,7 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         if self.configuration.isEnabledPullToRefresh {
             if self.isTriggeredRefresh {
                 self.isTriggeredRefresh = false
+                self.target.backgroundColor = self.targetBackgroundColor
                 if self.target.contentInset.top != 0 {
                     let insetTop: CGFloat = self.target.contentInset.top
                     self.target.contentInset.top = 0

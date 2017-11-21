@@ -156,7 +156,6 @@ extension URParallaxScrollAnimatorMakable {
                                                          lowerLottieData: String! = nil) {
         self.configuration = URParallaxScrollConfiguration(parallaxScrollRatio: parallaxScrollRatio, parallaxScrollType: parallaxScrollType, backgroundColor: backgroundColor, upperImage: upperImage, lowerImage: lowerImage, upperLottieData: upperLottieData, lowerLottieData: lowerLottieData)
         self.targetBackgroundColor = self.target.backgroundColor
-        self.target.backgroundColor = UIColor.clear
 
         self.initParallaxScrollViews()
     }
