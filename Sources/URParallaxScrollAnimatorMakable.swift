@@ -84,7 +84,7 @@ extension URParallaxScrollAnimatorMakable {
         }
     }
 
-    fileprivate func configScrollContentView(position: URParallaxScrollViewPosition, contentView: UIView, size: CGSize) {
+    fileprivate func configScrollContentView(position: URParallaxScrollViewPosition, contentView: UIView, size: CGSize, isAnimatableContent: Bool = false) {
         var scrollView: UIScrollView!
 
         switch position {
@@ -113,7 +113,13 @@ extension URParallaxScrollAnimatorMakable {
             scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[view]-0-|", options: [], metrics: nil, views: ["view" : contentView]))
             scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [], metrics: nil, views: ["view" : contentView]))
             scrollView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0.0))
-            contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.height, multiplier: size.width / size.height, constant: 0.0))
+//            contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.height, multiplier: size.width / size.height, constant: 0.0))
+            self.upperImageView.layoutIfNeeded()
+            if isAnimatableContent {
+                contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: self.upperImageView.bounds.height))
+            } else {
+                contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: self.upperImageView.bounds.height))
+            }
         default:
             break
         }
@@ -127,9 +133,11 @@ extension URParallaxScrollAnimatorMakable {
             self.blankView.backgroundColor = UIColor.white
             container.addSubview(self.blankView)
 
+            contentView.layoutIfNeeded()
+
             self.blankView.translatesAutoresizingMaskIntoConstraints = false
             container.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[blank]-0-|", options: [], metrics: nil, views: ["blank" : self.blankView]))
-            container.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[content]-0-[blank]-0-|", options: [], metrics: nil, views: ["content" : contentView, "blank": self.blankView]))
+            container.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[content]-0-[blank]-contentHeight-|", options: [], metrics: ["contentHeight": -contentView.bounds.height], views: ["content" : contentView, "blank": self.blankView]))
         } else {
             self.blankView.isHidden = false
         }
@@ -148,6 +156,7 @@ extension URParallaxScrollAnimatorMakable {
                                                          lowerLottieData: String! = nil) {
         self.configuration = URParallaxScrollConfiguration(parallaxScrollRatio: parallaxScrollRatio, parallaxScrollType: parallaxScrollType, backgroundColor: backgroundColor, upperImage: upperImage, lowerImage: lowerImage, upperLottieData: upperLottieData, lowerLottieData: lowerLottieData)
         self.targetBackgroundColor = self.target.backgroundColor
+        self.target.backgroundColor = UIColor.clear
 
         self.initParallaxScrollViews()
     }
@@ -181,7 +190,7 @@ extension URParallaxScrollAnimatorMakable where Self: URParallaxScrollAnimatable
             self.configScrollView(position: .upper)
 
             self.initLotAnimationView(position: .upper, data: data)
-            self.configScrollContentView(position: .upper, contentView: self.upperLotAnimationView, size: self.upperLotAnimationView.bounds.size)
+            self.configScrollContentView(position: .upper, contentView: self.upperLotAnimationView, size: self.upperLotAnimationView.bounds.size, isAnimatableContent: true)
         }
 
         if let data = self.configuration.lowerLottieData {
@@ -189,7 +198,7 @@ extension URParallaxScrollAnimatorMakable where Self: URParallaxScrollAnimatable
             self.configScrollView(position: .lower)
 
             self.initLotAnimationView(position: .lower, data: data)
-            self.configScrollContentView(position: .lower, contentView: self.lowerLotAnimationView, size: self.lowerLotAnimationView.bounds.size)
+            self.configScrollContentView(position: .lower, contentView: self.lowerLotAnimationView, size: self.lowerLotAnimationView.bounds.size, isAnimatableContent: true)
         }
     }
 }

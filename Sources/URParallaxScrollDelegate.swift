@@ -70,12 +70,16 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
             self.startOffsetY = scrollView.contentOffset.y
         }
 
-//        let scrollDirection: URParallaxScrollVerticalDirection = (self.preOffsetYUpper > scrollView.contentOffset.y && scrollView.contentOffset.y < 0) ? .down : .up
+        self.upperScrollView.backgroundColor = UIColor.clear
+
+        let scrollDirection: URParallaxScrollVerticalDirection = (self.preOffsetYUpper > scrollView.contentOffset.y && scrollView.contentOffset.y < 0) ? .down : .up
+        print(scrollDirection)
 
         let scrollRatio: CGFloat = self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
         let limitImageScrollOffsetY: CGFloat = self.upperImageView.bounds.height / (1 - self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio)
 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
+        // scroll offset range is not in the "pull to refresh" trigerring range.
         if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
             var animationProgress: CGFloat = progress
             if self.configuration.isEnabledPullToRefresh {
@@ -102,6 +106,11 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
             self.animateRefreshImage(progress: animationProgress, parallaxScrollType: self.configuration.parallaxScrollType)
         } else {
             self.needHapticFeedback = false
+
+            if scrollDirection == .up && scrollView.contentOffset.y > 0 {
+                print("blank!!", self.startOffsetY)
+                self.upperScrollView.backgroundColor = self.targetBackgroundColor
+            }
 
             var animationProgress: CGFloat = 1.0
             if self.configuration.isEnabledPullToRefresh {
@@ -158,9 +167,6 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
     }
 
     public func parallaxScrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y == 0 {
-            self.target.backgroundColor = self.targetBackgroundColor
-        }
     }
 
     public func parallaxScrollViewDidPullToRefresh() {
