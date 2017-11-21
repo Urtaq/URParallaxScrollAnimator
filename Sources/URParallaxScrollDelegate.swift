@@ -71,8 +71,9 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         }
 
         self.upperScrollView.backgroundColor = UIColor.clear
+        self.target.backgroundColor = UIColor.clear
 
-        let scrollDirection: URParallaxScrollVerticalDirection = (self.preOffsetYUpper > scrollView.contentOffset.y && scrollView.contentOffset.y < 0) ? .down : .up
+        let scrollDirection: URParallaxScrollVerticalDirection = (self.preOffsetYUpper > scrollView.contentOffset.y) ? .down : .up
         print(scrollDirection)
 
         let scrollRatio: CGFloat = self.upperImageView.bounds.height / scrollView.bounds.height * self.configuration.parallaxScrollRatio
@@ -81,6 +82,10 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         let progress: CGFloat = abs(scrollView.contentOffset.y) / limitImageScrollOffsetY
         // scroll offset range is not in the "pull to refresh" trigerring range.
         if limitImageScrollOffsetY >= abs(scrollView.contentOffset.y) {
+            if scrollDirection == .up && scrollView.contentOffset.y >= 0 {
+                self.upperScrollView.backgroundColor = self.targetBackgroundColor
+                self.target.backgroundColor = self.targetBackgroundColor
+            }
             var animationProgress: CGFloat = progress
             if self.configuration.isEnabledPullToRefresh {
                 if self.isTriggeredRefresh && self.isGestureReleased && self.startOffsetY <= 0 {
@@ -107,9 +112,9 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         } else {
             self.needHapticFeedback = false
 
-            if scrollDirection == .up && scrollView.contentOffset.y > 0 {
-                print("blank!!", self.startOffsetY)
+            if scrollView.contentOffset.y > 0 {
                 self.upperScrollView.backgroundColor = self.targetBackgroundColor
+                self.target.backgroundColor = self.targetBackgroundColor
             }
 
             var animationProgress: CGFloat = 1.0
@@ -138,8 +143,6 @@ extension URParallaxScrollDelegate where Self: URParallaxScrollAnimatorMakable, 
         self.needHapticFeedback = true
         self.prepareHapticFeedback()
         self.isGestureReleased = false
-
-        scrollView.backgroundColor = UIColor.clear
 
         if scrollView.contentOffset.y == 0 {
             self.initScroll()
